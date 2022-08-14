@@ -20,12 +20,12 @@
                              <div class="divider"></div>
                         </div>
                         <div class="form-group row mb-3 ">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('lang.email') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('lang.phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
-                                @error('email')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
