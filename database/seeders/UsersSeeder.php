@@ -19,6 +19,7 @@ class UsersSeeder extends Seeder
                 'name'=>"ADMIN",
                 'power'=>"ADMIN",
                 'email'=>env('DEFAULT_EMAIL'),
+                'phone'=>env('DEFAULT_PHONE'),
                 'email_verified_at'=>date("Y-m-d h:i:s"), 
                 'password'=>bcrypt(env('DEFAULT_PASSWORD'))
             ]);
