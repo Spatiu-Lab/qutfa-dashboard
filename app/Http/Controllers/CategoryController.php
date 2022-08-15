@@ -21,7 +21,6 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        dd(App::getLocale());
         $categories =  Category::where(function($q)use($request){
             if($request->id!=null)
                 $q->where('id',$request->id);
