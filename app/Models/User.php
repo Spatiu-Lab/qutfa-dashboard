@@ -6,17 +6,19 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
+    use HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [ 
+    protected $guarded = [
     ];
 
     /**
@@ -56,7 +58,6 @@ class User extends Authenticatable
         else
             return env('STORAGE_URL').'/uploads/users/'.$this->avatar;
     }
-    
     public function scopeWithoutTimestamps()
     {
         $this->timestamps = false;
@@ -74,7 +75,7 @@ class User extends Authenticatable
     public function report_errors(){
         return $this->hasMany(\App\Models\ReportError::class);
     }
-    
-    
+
+
 
 }
