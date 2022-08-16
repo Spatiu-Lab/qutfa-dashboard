@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,5 @@ Route::post('register',[AuthController::class,'register']);
 Route::group(['middleware' => 'auth:sanctum'],function() {
     Route::post('logout',[AuthController::class,'logout']);
 
+    Route::resource('products',ProductController::class)->only('index','show');
 });

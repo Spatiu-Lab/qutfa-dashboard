@@ -17,7 +17,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(Product::class, 'product'); 
+        $this->authorizeResource(Product::class, 'product');
     }
 
 
@@ -57,20 +57,20 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        return DB::transaction(function () use($request) {          
+        return DB::transaction(function () use($request) {
              $product = Product::create($request->validated());
 
             for($i = 0; $i < count(config('translatable.locales')); $i++) {
                 $locale = config('translatable.locales')[$i];
                 $product->setTranslation('name', $locale, $request->name[$locale]);
-            } 
+            }
 
             if($request->hasFile('image')){
                 $file = $this->store_file([
-                    'source'=>$request->image,  
+                    'source'=>$request->image,
                     'validation'=>"image",
                     'path_to_save'=>'/uploads/products/',
-                    'type'=>'PRODUCT', 
+                    'type'=>'PRODUCT',
                     'user_id'=> Auth::user()->id,
                     'resize'=>[500,1000],
                     'small_path'=>'small/',
@@ -78,7 +78,7 @@ class ProductController extends Controller
                     'file_system_type'=>env('FILESYSTEM_DRIVER'),
                     /*'watermark'=>true,*/
                     'compress'=>'auto'
-                ]); 
+                ]);
                 $product->update(['image'=>$file['filename']]);
             }
 
@@ -135,10 +135,10 @@ class ProductController extends Controller
 
             if($request->hasFile('image')){
                 $file = $this->store_file([
-                    'source'=>$request->image,  
+                    'source'=>$request->image,
                     'validation'=>"image",
                     'path_to_save'=>'/uploads/products/',
-                    'type'=>'PRODUCT', 
+                    'type'=>'PRODUCT',
                     'user_id'=> Auth::user()->id,
                     'resize'=>[500,1000],
                     'small_path'=>'small/',
@@ -146,7 +146,7 @@ class ProductController extends Controller
                     'file_system_type'=>env('FILESYSTEM_DRIVER'),
                     /*'watermark'=>true,*/
                     'compress'=>'auto'
-                ]); 
+                ]);
                 $product->update(['image'=>$file['filename']]);
             }
 
