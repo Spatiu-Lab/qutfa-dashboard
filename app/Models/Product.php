@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     const STATUS_AVAILABLE = 'available';
     const STATUS_UNAVAILABLE = 'unavailable';
@@ -18,6 +20,8 @@ class Product extends Model
         self::STATUS_AVAILABLE,
         self::STATUS_UNAVAILABLE,
     ];
+
+    public $translatable = ['name'];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 

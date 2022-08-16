@@ -57,8 +57,13 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        return DB::transaction(function () use($request) {
-            $product = Product::create($request->validated());
+        return DB::transaction(function () use($request) {          
+             $product = Product::create($request->validated());
+
+            for($i = 0; $i < count(config('translatable.locales')); $i++) {
+                $locale = config('translatable.locales')[$i];
+                $product->setTranslation('name', $locale, $request->name[$locale]);
+            } 
 
             if($request->hasFile('image')){
                 $file = $this->store_file([
