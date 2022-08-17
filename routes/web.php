@@ -31,7 +31,9 @@ use App\Http\Controllers\NotificationsController;
 
 Auth::routes();
 
-Route::get('/', function () {return view('front.index');})->name('home');
+Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index']);
 

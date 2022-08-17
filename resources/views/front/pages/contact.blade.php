@@ -1,68 +1,64 @@
-@extends('layouts.app',['page_title'=>"تواصل معنا"])
+@extends('layouts.app',['title'=>"تواصل معنا"])
 @section('content')
-<div class="col-12 p-0">
-    <div class=" p-0 container">
-        <div class="col-12 p-2 p-lg-3 row">
-            <div class="col-12 px-2 pt-5 pb-3">
-                <div class="col-12 p-0 font-4">
-                    <span class="start-head"></span> تواصل معنا
-                </div>
-                {{-- <div class="col-12 p-0 mt-1" style="opacity: .7;">
-                    معلومات عنا
-                </div> --}}
-            </div>
-            <div class="col-12 col-lg-8 p-2 ">
-                {!!$settings['contact_page']!!}
-            </div>
-            <div class="col-12 col-lg-8 p-0 ">
-                <div style="max-width: 100%;text-align: justify;" class="mx-auto p-0 font-2 naskh">
-                    <form class="" method="POST" action="{{route('contact-post')}}" id="contact-form">
-                        <input type="hidden" name="recaptcha" id="recaptcha"> 
-                        @csrf
-                        <div class="col-12 px-0 py-3">
-                            <div class="col-12">
-                                <input type="text" name="name" class="form-control rounded-0" placeholder="اﻹسم" required="" min="3" max="255" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 px-0 py-3">
-                            <div class="col-12">
-                                <input type="email" name="email" class="form-control rounded-0" placeholder="البريد" required="" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 px-0 py-3">
-                            <div class="col-12">
-                                <input type="text" name="phone" class="form-control rounded-0" placeholder="الهاتف" required="" min="99999999" max="9999999999999999" value="">
-                            </div>
-                        </div>
-                        <div class="col-12 px-0 py-3">
-                            <div class="col-12">
-                                <textarea class="form-control rounded-0" name="message" style="min-height:200px" placeholder="الرسالة" required="" minlength="3" maxlength="1000"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12 px-0 py-3">
-                            <div class="col-12">
-                                <button class="btn btn-success rounded-0" type="submit" >إرسال الرسالة</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-@section('scripts')
-<script src="https://www.google.com/recaptcha/api.js?render={{ env("RECAPTCHA_SITE_KEY") }}"></script>
-<script>
-grecaptcha.ready(function() {
-  document.getElementById('contact-form').addEventListener("submit", function(event) {
-    event.preventDefault();
-    grecaptcha.execute('{{ env("RECAPTCHA_SITE_KEY") }}', {action: 'contact'}).then(function(token) {
-        console.log(token);
-       document.getElementById("recaptcha").value= token; 
-       document.getElementById('contact-form').submit();
-    });
-  }, false);
-});
-</script>
+    <!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p></p>
+						<h1>تواصل معنا</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- contact form -->
+	<div class="contact-from-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mb-5 mb-lg-0">
+					<div class="form-title">
+						<h2>Have you any question?</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+					</div>
+				 	<div id="form_status"></div>
+					<div class="contact-form">
+						<form type="POST" id="fruitkha-contact" onSubmit="return valid_datas( this );">
+							<p>
+								<input type="text" placeholder="Name" name="name" id="name">
+								<input type="email" placeholder="Email" name="email" id="email">
+							</p>
+							<p>
+								<input type="tel" placeholder="Phone" name="phone" id="phone">
+								<input type="text" placeholder="Subject" name="subject" id="subject">
+							</p>
+							<p><textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea></p>
+							<input type="hidden" name="token" value="FsWga4&@f6aw" />
+							<p><input type="submit" value="Submit"></p>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="contact-form-wrap">
+						<div class="contact-form-box">
+							<h4><i class="fas fa-map"></i> Shop Address</h4>
+							<p>34/8, East Hukupara <br> Gifirtok, Sadan. <br> Country Name</p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="far fa-clock"></i> Shop Hours</h4>
+							<p>MON - FRIDAY: 8 to 9 PM <br> SAT - SUN: 10 to 8 PM </p>
+						</div>
+						<div class="contact-form-box">
+							<h4><i class="fas fa-address-book"></i> Contact</h4>
+							<p>Phone: +00 111 222 3333 <br> Email: support@fruitkha.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end contact form -->
 @endsection
