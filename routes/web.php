@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HelperController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
@@ -70,6 +71,7 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
 
         // units routes
         Route::resource('units',UnitController::class);
+        Route::resource('sliders',  SliderController::class);
 
         // products routes
         Route::resource('products',ProductController::class);
