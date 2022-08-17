@@ -14,6 +14,18 @@ class FrontController extends Controller
     {
         return view('front.index');
     }
+
+    public function about()
+    {
+        return view('front.pages.about');
+    }
+
+    public function contact()
+    {
+        return view('front.pages.contact');
+    }
+
+    
     public function contact_post(Request $request)
     {
         $request->validate([
