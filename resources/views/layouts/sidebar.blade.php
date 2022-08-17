@@ -80,18 +80,30 @@
                         </div>
                     </a>
                 @endcan
+                @can('viewAny',\App\Models\Slider::class)
+                    <a href="{{route('admin.sliders.index')}}" class="col-12 px-0">
+                        <div class="col-12 item px-0 d-flex " >
+                            <div style="width: 50px" class="px-3 text-center">
+                                <span class="fal fa-tag font-2"> </span> 
+                            </div>
+                            <div style="width: calc(100% - 50px)" class="px-2">
+                                المعرض
+                            </div> 
+                        </div>
+                    </a>
+                @endcan
                 @can('viewAny', \App\Models\User::class)
-                <a href="{{ route('admin.users.index') }}" class="col-12 px-0">
-                    <div class="col-12 item px-0 d-flex ">
-                        <div style="width: 50px" class="px-3 text-center">
-                            <span class="fal fa-users font-2"> </span>
+                    <a href="{{ route('admin.users.index') }}" class="col-12 px-0">
+                        <div class="col-12 item px-0 d-flex ">
+                            <div style="width: 50px" class="px-3 text-center">
+                                <span class="fal fa-users font-2"> </span>
+                            </div>
+                            <div style="width: calc(100% - 50px)" class="px-2">
+                                العملاء
+                            </div>
                         </div>
-                        <div style="width: calc(100% - 50px)" class="px-2">
-                            العملاء
-                        </div>
-                    </div>
-                </a>
-            @endcan
+                    </a>
+                @endcan
                 @can('viewAny', \App\Models\User::class)
                     <a href="{{ route('admin.users.index') }}" class="col-12 px-0">
                         <div class="col-12 item px-0 d-flex ">
