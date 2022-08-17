@@ -18,6 +18,15 @@ class ProductController extends Controller
     }
 
     public function show(Product $product) {
-        return ProductRescource::make($product);
+        return ProductRescource::make($product->load('category'));
+    }
+
+    /**
+     * @queryParam name required string to search for in product name .
+     */
+    public function search(Request $request) {
+        $products = Product::where('name','LIKE',"%" . $request->query('name') . "%")->paginate(10);
+
+        return ProductRescource::collection($products);
     }
 }

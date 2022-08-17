@@ -38,10 +38,10 @@ class RegisterRequest extends FormRequest
         return [
             'email.required' => 'الرجاء ادخال  البريد الالكتروني',
             'email.email' => 'البريد الالكتروني غير صالح',
-            'email.unique' => 'البريد الالكتروني غير صالح',
+            'email.unique' => 'البريد الالكتروني مستخدم بالفعل',
             'phone.required' => 'الرجاء ادخال رقم الهاتف',
             'phone.numeric' => 'رقم الهاتف غير صالح',
-            'phone.unique' => 'رقم الهاتف غير صالح',
+            'phone.unique' => 'رقم الهاتف مستخدم بالفعل',
             'password.required' => 'الرجاء ادخال كلمة المرور',
             'password.confirmed' => 'كلمة المرور غير متطابقة',
             'avatar.image' => 'صورة الملف الشخصي غير صالحة',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryControlller;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,10 @@ Route::post('register',[AuthController::class,'register']);
 Route::group(['middleware' => 'auth:sanctum'],function() {
     Route::post('logout',[AuthController::class,'logout']);
 
+    Route::get('products/search',[ProductController::class,'search']);
     Route::resource('products',ProductController::class)->only('index','show');
+
+    Route::get('categories/search',[CategoryControlller::class,'search']);
+    Route::resource('categories',CategoryControlller::class)->only('index','show');
+
 });
