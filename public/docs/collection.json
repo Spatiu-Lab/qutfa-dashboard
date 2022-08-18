@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "135bdfa0-f6fc-4735-a3f8-b412660fbc9b",
+        "_postman_id": "e09940ab-abe7-432e-96e8-fd6fe687a321",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone\":501224.494715534,\"password\":\"quisquam\"}"
+                            "raw": "{\"phone\":29334758.1981,\"password\":\"doloremque\"}"
                         },
                         "description": ""
                     },
@@ -72,31 +72,31 @@
                             "formdata": [
                                 {
                                     "key": "email",
-                                    "value": "cody46@example.com",
+                                    "value": "mcdermott.rosetta@example.com",
                                     "type": "text",
                                     "description": "\u064a\u062c\u0628 \u0623\u0646 \u064a\u0643\u0648\u0646 \u062d\u0642\u0644 value \u0639\u0646\u0648\u0627\u0646 \u0628\u0631\u064a\u062f \u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0635\u062d\u064a\u062d \u0627\u0644\u0628\u064f\u0646\u064a\u0629."
                                 },
                                 {
                                     "key": "name",
-                                    "value": "beatae",
+                                    "value": "eos",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "phone",
-                                    "value": 1706.3092,
+                                    "value": 5685922.3203,
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "password",
-                                    "value": "quis",
+                                    "value": "dolorem",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "bio",
-                                    "value": "delectus",
+                                    "value": "atque",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -137,20 +137,26 @@
                     "response": []
                 },
                 {
-                    "name": "api\/products\/search",
+                    "name": "api\/products",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/search",
+                            "path": "api\/products",
                             "query": [
+                                {
+                                    "key": "category_id",
+                                    "value": "",
+                                    "description": "filter by category_id.  .",
+                                    "disabled": true
+                                },
                                 {
                                     "key": "name",
                                     "value": "",
-                                    "description": "to search for in product name .",
+                                    "description": "filter by product name .  .",
                                     "disabled": true
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/products\/search?name="
+                            "raw": "{{baseUrl}}\/api\/products?category_id=&name="
                         },
                         "method": "GET",
                         "header": [
@@ -191,67 +197,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":1,\"name\":\"explicabo\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\"},{\"id\":2,\"name\":\"voluptates\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Est repudiandae enim dolorum.\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products\\\/search?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products\\\/search?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; \\u0627\\u0644\\u0633\\u0627\\u0628\\u0642\",\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products\\\/search?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products\\\/search\",\"per_page\":10,\"to\":2,\"total\":2}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "api\/products",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/products",
-                            "query": [
-                                {
-                                    "key": "category_id",
-                                    "value": "1",
-                                    "description": "filter products by category_id field.",
-                                    "disabled": false
-                                }
-                            ],
-                            "raw": "{{baseUrl}}\/api\/products?category_id=1"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "58"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":2,\"name\":\"voluptates\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Est repudiandae enim dolorum.\"},{\"id\":1,\"name\":\"explicabo\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; \\u0627\\u0644\\u0633\\u0627\\u0628\\u0642\",\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products\",\"per_page\":10,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":2,\"name\":\"voluptates\",\"image\":\"\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Est repudiandae enim dolorum.\"},{\"id\":1,\"name\":\"explicabo\",\"image\":\"\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; \\u0627\\u0644\\u0633\\u0627\\u0628\\u0642\",\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/products\",\"per_page\":10,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -304,7 +250,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "57"
+                                    "value": "58"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -312,67 +258,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":1,\"name\":\"explicabo\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\",\"category\":{\"id\":1,\"category_id\":null,\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\"}}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "api\/categories\/search",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/categories\/search",
-                            "query": [
-                                {
-                                    "key": "title",
-                                    "value": "",
-                                    "description": "string to search for in category title .  .",
-                                    "disabled": false
-                                }
-                            ],
-                            "raw": "{{baseUrl}}\/api\/categories\/search?title="
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "56"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":1,\"category_id\":null,\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\"},{\"id\":2,\"category_id\":null,\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"minus-quidem-magnam-eos-earum-est\",\"title\":\"quo\",\"description\":\"Soluta ea perspiciatis assumenda ipsa.\",\"meta_description\":\"Dolor odit neque at laborum eum omnis.\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories\\\/search?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories\\\/search?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; \\u0627\\u0644\\u0633\\u0627\\u0628\\u0642\",\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories\\\/search?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories\\\/search\",\"per_page\":10,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":{\"id\":1,\"name\":\"explicabo\",\"image\":\"\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\",\"category\":{\"id\":1,\"category_id\":null,\"image\":\"\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\"}}}",
                             "name": ""
                         }
                     ]
@@ -383,8 +269,15 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/categories",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/categories"
+                            "query": [
+                                {
+                                    "key": "title",
+                                    "value": "",
+                                    "description": "filter by category title .  .",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/categories?title="
                         },
                         "method": "GET",
                         "header": [
@@ -417,7 +310,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "55"
+                                    "value": "57"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -425,7 +318,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":2,\"category_id\":null,\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"minus-quidem-magnam-eos-earum-est\",\"title\":\"quo\",\"description\":\"Soluta ea perspiciatis assumenda ipsa.\",\"meta_description\":\"Dolor odit neque at laborum eum omnis.\"},{\"id\":1,\"category_id\":null,\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; \\u0627\\u0644\\u0633\\u0627\\u0628\\u0642\",\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories\",\"per_page\":10,\"to\":2,\"total\":2}}",
+                            "body": "{\"data\":[{\"id\":2,\"category_id\":null,\"image\":\"\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"minus-quidem-magnam-eos-earum-est\",\"title\":\"quo\",\"description\":\"Soluta ea perspiciatis assumenda ipsa.\",\"meta_description\":\"Dolor odit neque at laborum eum omnis.\"},{\"id\":1,\"category_id\":null,\"image\":\"\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; \\u0627\\u0644\\u0633\\u0627\\u0628\\u0642\",\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"\\u0627\\u0644\\u062a\\u0627\\u0644\\u064a &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/categories\",\"per_page\":10,\"to\":2,\"total\":2}}",
                             "name": ""
                         }
                     ]
@@ -478,7 +371,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "54"
+                                    "value": "56"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -486,7 +379,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":1,\"category_id\":null,\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\",\"products\":[{\"id\":1,\"name\":\"explicabo\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\"},{\"id\":2,\"name\":\"voluptates\",\"image\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Est repudiandae enim dolorum.\"}]}}",
+                            "body": "{\"data\":{\"id\":1,\"category_id\":null,\"image\":\"\\\/storage\\\/uploads\\\/categories\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"slug\":\"nulla-suscipit-alias-enim-temporibus-dolorum\",\"title\":\"esse\",\"description\":\"Dolore dolor nisi odio repellat modi cupiditate.\",\"meta_description\":\"Voluptatem omnis voluptatum quis qui cumque.\",\"products\":[{\"id\":1,\"name\":\"explicabo\",\"image\":\"\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Placeat eaque consequuntur eius.\"},{\"id\":2,\"name\":\"voluptates\",\"image\":\"\\\/storage\\\/uploads\\\/products\\\/http:\\\/\\\/127.0.0.1:8000\\\/images\\\/default\\\/image.jpg\",\"description\":\"Est repudiandae enim dolorum.\"}]}}",
                             "name": ""
                         }
                     ]

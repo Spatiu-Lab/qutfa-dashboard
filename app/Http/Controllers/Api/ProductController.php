@@ -10,10 +10,12 @@ use App\Http\Resources\ProductRescource;
 class ProductController extends Controller
 {
     /**
-     * @queryParam category_id integer filter products by category_id field. Example: 1 .
+     * @queryParam category_id integer filter by category_id. No-example .
+     * @queryParam name string filter by product name . No-example .
      */
     public function index(Request $request) {
         $products =  Product::when($request->query('category_id'),fn($q) => $q->where('category_id',$request->category_id))
+        ->when($request->query('name'),fn($q) => $q->where('name','LIKE','%' . $request->name . '%'))
         ->where('status',Product::STATUS_AVAILABLE)
         ->orderBy('id','DESC')
         ->paginate(10);
@@ -23,14 +25,5 @@ class ProductController extends Controller
 
     public function show(Product $product) {
         return ProductRescource::make($product->load('category'));
-    }
-
-    /**
-     * @queryParam name string to search for in product name . No-example
-     */
-    public function search(Request $request) {
-        $products = Product::where('name','LIKE',"%" . $request->query('name') . "%")->paginate(10);
-
-        return ProductRescource::collection($products);
     }
 }

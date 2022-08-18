@@ -9,8 +9,12 @@ use Illuminate\Http\Request;
 
 class CategoryControlller extends Controller
 {
-    public function index() {
-        $categeories = Category::orderBy('id','DESC')
+    /**
+     * @queryParam title string filter by category title . No-example .
+     */
+    public function index(Request $request) {
+        $categeories = Category::when($request->query('title'),fn($q) => $q->where('title','LIKE','%' . $request->query('title') . '%'))
+        ->orderBy('id','DESC')
         ->paginate(10);
 
         return CategoryResource::collection($categeories);
@@ -18,15 +22,6 @@ class CategoryControlller extends Controller
 
     public function show(Category $category) {
        return CategoryResource::make($category->load('products'));
-    }
-
-    /**
-     * @queryParam title required string to search for in category title . No-example .
-     */
-    public function search(Request $request) {
-        $categeories = Category::where('title','LIKE',"%" . $request->query('q') . "%")->paginate(10);
-
-        return CategoryResource::collection($categeories);
     }
 
 }
