@@ -46,11 +46,11 @@ paths:
                 phone:
                   type: number
                   description: ''
-                  example: 1989.74409581
+                  example: 501224.49471553
                 password:
                   type: string
                   description: ''
-                  example: saepe
+                  example: quisquam
               required:
                 - phone
                 - password
@@ -93,19 +93,19 @@ paths:
                 email:
                   type: string
                   description: 'يجب أن يكون حقل value عنوان بريد إلكتروني صحيح البُنية.'
-                  example: sylvester47@example.org
+                  example: cody46@example.com
                 name:
                   type: string
                   description: ''
-                  example: totam
+                  example: beatae
                 phone:
                   type: number
                   description: ''
-                  example: 2.54427927
+                  example: 1706.3092
                 password:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: quis
                 avatar:
                   type: string
                   format: binary
@@ -113,7 +113,7 @@ paths:
                 bio:
                   type: string
                   description: ''
-                  example: accusamus
+                  example: delectus
               required:
                 - email
                 - phone
@@ -155,13 +155,13 @@ paths:
         -
           in: query
           name: name
-          description: 'string to search for in product name .'
-          example: fuga
-          required: true
+          description: 'to search for in product name .'
+          example: null
+          required: false
           schema:
             type: string
-            description: 'string to search for in product name .'
-            example: fuga
+            description: 'to search for in product name .'
+            example: null
         -
           in: header
           name: Authorization
@@ -191,7 +191,17 @@ paths:
               schema:
                 type: object
                 example:
-                  data: []
+                  data:
+                    -
+                      id: 1
+                      name: explicabo
+                      image: 'http://127.0.0.1:8000/storage/uploads/products/http://127.0.0.1:8000/images/default/image.jpg'
+                      description: 'Placeat eaque consequuntur eius.'
+                    -
+                      id: 2
+                      name: voluptates
+                      image: 'http://127.0.0.1:8000/storage/uploads/products/http://127.0.0.1:8000/images/default/image.jpg'
+                      description: 'Est repudiandae enim dolorum.'
                   links:
                     first: 'http://127.0.0.1:8000/api/products/search?page=1'
                     last: 'http://127.0.0.1:8000/api/products/search?page=1'
@@ -199,7 +209,7 @@ paths:
                     next: null
                   meta:
                     current_page: 1
-                    from: null
+                    from: 1
                     last_page: 1
                     links:
                       -
@@ -216,12 +226,24 @@ paths:
                         active: false
                     path: 'http://127.0.0.1:8000/api/products/search'
                     per_page: 10
-                    to: null
-                    total: 0
+                    to: 2
+                    total: 2
                 properties:
                   data:
                     type: array
-                    example: []
+                    example:
+                      -
+                        id: 1
+                        name: explicabo
+                        image: 'http://127.0.0.1:8000/storage/uploads/products/http://127.0.0.1:8000/images/default/image.jpg'
+                        description: 'Placeat eaque consequuntur eius.'
+                      -
+                        id: 2
+                        name: voluptates
+                        image: 'http://127.0.0.1:8000/storage/uploads/products/http://127.0.0.1:8000/images/default/image.jpg'
+                        description: 'Est repudiandae enim dolorum.'
+                    items:
+                      type: object
                   links:
                     type: object
                     example:
@@ -233,7 +255,7 @@ paths:
                     type: object
                     example:
                       current_page: 1
-                      from: null
+                      from: 1
                       last_page: 1
                       links:
                         -
@@ -250,8 +272,8 @@ paths:
                           active: false
                       path: 'http://127.0.0.1:8000/api/products/search'
                       per_page: 10
-                      to: null
-                      total: 0
+                      to: 2
+                      total: 2
       tags:
         - Endpoints
   /api/products:
@@ -259,6 +281,16 @@ paths:
       summary: ''
       description: ''
       parameters:
+        -
+          in: query
+          name: category_id
+          description: 'filter products by category_id field.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'filter products by category_id field.'
+            example: 1
         -
           in: header
           name: Authorization
@@ -455,13 +487,13 @@ paths:
         -
           in: query
           name: title
-          description: 'string to search for in category title .'
-          example: sed
+          description: 'string to search for in category title .  .'
+          example: null
           required: true
           schema:
             type: string
-            description: 'string to search for in category title .'
-            example: sed
+            description: 'string to search for in category title .  .'
+            example: null
         -
           in: header
           name: Authorization

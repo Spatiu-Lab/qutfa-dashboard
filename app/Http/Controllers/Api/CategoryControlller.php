@@ -21,7 +21,7 @@ class CategoryControlller extends Controller
     }
 
     /**
-     * @queryParam title required string to search for in category title .
+     * @queryParam title required string to search for in category title . No-example .
      */
     public function search(Request $request) {
         $categeories = Category::where('title','LIKE',"%" . $request->query('q') . "%")->paginate(10);

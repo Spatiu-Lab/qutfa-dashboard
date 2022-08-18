@@ -113,7 +113,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: August 17 2022</li>
+        <li>Last updated: August 18 2022</li>
     </ul>
 </div>
 
@@ -157,8 +157,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone\": 1989.74409581,
-    \"password\": \"saepe\"
+    \"phone\": 501224.494715534,
+    \"password\": \"quisquam\"
 }"
 </code></pre></div>
 
@@ -175,8 +175,8 @@ const headers = {
 };
 
 let body = {
-    "phone": 1989.74409581,
-    "password": "saepe"
+    "phone": 501224.494715534,
+    "password": "quisquam"
 };
 
 fetch(url, {
@@ -242,7 +242,7 @@ fetch(url, {
                 <input type="number"
                name="phone"
                data-endpoint="POSTapi-login"
-               value="1989.74409581"
+               value="501224.49471553"
                data-component="body" hidden>
     <br>
 
@@ -252,7 +252,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="saepe"
+               value="quisquam"
                data-component="body" hidden>
     <br>
 
@@ -277,12 +277,12 @@ fetch(url, {
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "email=sylvester47@example.org" \
-    --form "name=totam" \
-    --form "phone=2.54427927" \
-    --form "password=eligendi" \
-    --form "bio=accusamus" \
-    --form "avatar=@/tmp/phpsOyYaE" </code></pre></div>
+    --form "email=cody46@example.com" \
+    --form "name=beatae" \
+    --form "phone=1706.3092" \
+    --form "password=quis" \
+    --form "bio=delectus" \
+    --form "avatar=@/tmp/phpZ00Vpp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -297,11 +297,11 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('email', 'sylvester47@example.org');
-body.append('name', 'totam');
-body.append('phone', '2.54427927');
-body.append('password', 'eligendi');
-body.append('bio', 'accusamus');
+body.append('email', 'cody46@example.com');
+body.append('name', 'beatae');
+body.append('phone', '1706.3092');
+body.append('password', 'quis');
+body.append('bio', 'delectus');
 body.append('avatar', document.querySelector('input[name="avatar"]').files[0]);
 
 fetch(url, {
@@ -367,7 +367,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-register"
-               value="sylvester47@example.org"
+               value="cody46@example.com"
                data-component="body" hidden>
     <br>
 <p>يجب أن يكون حقل value عنوان بريد إلكتروني صحيح البُنية.</p>
@@ -377,7 +377,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-register"
-               value="totam"
+               value="beatae"
                data-component="body" hidden>
     <br>
 
@@ -387,7 +387,7 @@ fetch(url, {
                 <input type="number"
                name="phone"
                data-endpoint="POSTapi-register"
-               value="2.54427927"
+               value="1706.3092"
                data-component="body" hidden>
     <br>
 
@@ -397,7 +397,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="eligendi"
+               value="quis"
                data-component="body" hidden>
     <br>
 
@@ -417,7 +417,7 @@ fetch(url, {
                 <input type="text"
                name="bio"
                data-endpoint="POSTapi-register"
-               value="accusamus"
+               value="delectus"
                data-component="body" hidden>
     <br>
 
@@ -527,7 +527,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/products/search?name=fuga" \
+    --get "http://127.0.0.1:8000/api/products/search" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -537,12 +537,6 @@ fetch(url, {
     <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/products/search"
 );
-
-const params = {
-    "name": "fuga",
-};
-Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -568,13 +562,26 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 53
+x-ratelimit-remaining: 59
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: [],
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;explicabo&quot;,
+            &quot;image&quot;: &quot;http://127.0.0.1:8000/storage/uploads/products/http://127.0.0.1:8000/images/default/image.jpg&quot;,
+            &quot;description&quot;: &quot;Placeat eaque consequuntur eius.&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;voluptates&quot;,
+            &quot;image&quot;: &quot;http://127.0.0.1:8000/storage/uploads/products/http://127.0.0.1:8000/images/default/image.jpg&quot;,
+            &quot;description&quot;: &quot;Est repudiandae enim dolorum.&quot;
+        }
+    ],
     &quot;links&quot;: {
         &quot;first&quot;: &quot;http://127.0.0.1:8000/api/products/search?page=1&quot;,
         &quot;last&quot;: &quot;http://127.0.0.1:8000/api/products/search?page=1&quot;,
@@ -583,7 +590,7 @@ access-control-allow-origin: *
     },
     &quot;meta&quot;: {
         &quot;current_page&quot;: 1,
-        &quot;from&quot;: null,
+        &quot;from&quot;: 1,
         &quot;last_page&quot;: 1,
         &quot;links&quot;: [
             {
@@ -604,8 +611,8 @@ access-control-allow-origin: *
         ],
         &quot;path&quot;: &quot;http://127.0.0.1:8000/api/products/search&quot;,
         &quot;per_page&quot;: 10,
-        &quot;to&quot;: null,
-        &quot;total&quot;: 0
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
     }
 }</code>
  </pre>
@@ -659,14 +666,14 @@ access-control-allow-origin: *
         </p>
                     <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                     <p>
-                <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
                 <input type="text"
                name="name"
                data-endpoint="GETapi-products-search"
-               value="fuga"
+               value=""
                data-component="query" hidden>
     <br>
-<p>string to search for in product name .</p>
+<p>to search for in product name .</p>
             </p>
                 </form>
 
@@ -684,7 +691,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/products" \
+    --get "http://127.0.0.1:8000/api/products?category_id=1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -694,6 +701,12 @@ access-control-allow-origin: *
     <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/products"
 );
+
+const params = {
+    "category_id": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Authorization": "Bearer {YOUR_AUTH_KEY}",
@@ -719,7 +732,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 52
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -821,6 +834,17 @@ access-control-allow-origin: *
                                                                 data-endpoint="GETapi-products"
                                                                 data-component="header"></label>
         </p>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="GETapi-products"
+               value="1"
+               data-component="query" hidden>
+    <br>
+<p>filter products by category_id field.</p>
+            </p>
                 </form>
 
             <h2 id="endpoints-GETapi-products--id-">GET api/products/{id}</h2>
@@ -872,7 +896,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 51
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -970,7 +994,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/categories/search?title=sed" \
+    --get "http://127.0.0.1:8000/api/categories/search?title=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -982,7 +1006,7 @@ access-control-allow-origin: *
 );
 
 const params = {
-    "title": "sed",
+    "title": "",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1011,7 +1035,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 50
+x-ratelimit-remaining: 56
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -1125,10 +1149,10 @@ access-control-allow-origin: *
                 <input type="text"
                name="title"
                data-endpoint="GETapi-categories-search"
-               value="sed"
+               value=""
                data-component="query" hidden>
     <br>
-<p>string to search for in category title .</p>
+<p>string to search for in category title .  .</p>
             </p>
                 </form>
 
@@ -1181,7 +1205,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 49
+x-ratelimit-remaining: 55
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -1340,7 +1364,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 48
+x-ratelimit-remaining: 54
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
