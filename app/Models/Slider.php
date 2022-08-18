@@ -15,4 +15,11 @@ class Slider extends Model
 
     protected $fillable = ['title', 'image', 'rank'];
 
+    public function image(){
+        if($this->image==null)
+            return env('DEFAULT_IMAGE');
+        else
+            return env("STORAGE_URL")."/uploads/sliders/".$this->image;
+    }
+
 }

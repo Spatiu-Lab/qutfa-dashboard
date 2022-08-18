@@ -32,7 +32,7 @@
 	<link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}">
 	<!-- rtl -->
 	<link rel="stylesheet" href="{{ asset('front/assets/css/rtl.css') }}">
-
+	@stack('styles')
 </head>
 <body>
 	
@@ -65,9 +65,11 @@
 									<a href="{{ url('/') }}">الرئيسية</a>
 								</li>
 								<li><a href="{{ url('about') }}">نبذة عننا</a></li>
-								<li><a href="shop.html">التمور</a></li>
-								<li><a href="shop.html">الفواكه</a></li>
-								<li><a href="shop.html">الالبان</a></li>
+								@isset($nav_categories)
+									@foreach($nav_categories as $nav_category)
+										<li><a href="{{ url('shop') . '/' . $nav_category->slug }}">{{ $nav_category->title }}</a></li>
+									@endforeach
+								@endisset
 								<li><a href="{{ url('/contact') }}">تواصل معنا</a></li>
 								<li>
 									<div class="header-icons">
@@ -133,8 +135,20 @@
 	<script src="{{ asset('front/assets/js/jquery.meanmenu.min.js') }}"></script>
 	<!-- sticker js -->
 	<script src="{{ asset('front/assets/js/sticker.js') }}"></script>
+	<!-- cart-localstorage js -->
+	<script src="{{ asset('front/assets/js/cart-localstorage.min.js') }}"></script>
 	<!-- main js -->
 	<script src="{{ asset('front/assets/js/main.js') }}"></script>
 
+	<script>
+		$('.cart-btn').on('click', function () {
+			cartLS.add({
+				id : $(this).data('id'),
+				name : $(this).data('name'),
+				price : $(this).data('price')
+			})
+		})
+	</script>
+	@stack('scripts')
 </body>
 </html>

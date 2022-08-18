@@ -24,62 +24,24 @@
 	<!-- home page slider -->
 	<div class="homepage-slider">
 		<!-- single home slider -->
-		<div class="single-homepage-slider homepage-bg-3">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-10 offset-lg-1 text-right">
-						<div class="hero-text">
-							<div class="hero-text-tablecell">
-								<p class="subtitle"></p>
-								<h1>كل احتياجاتك في مكان واحد</h1>
-								<div class="hero-btns">
-									<a href="shop.html" class="boxed-btn">تسوق الان</a>
-									<a href="contact.html" class="bordered-btn">تواصل معنا</a>
+		@foreach ($sliders as $slider)
+			<div class="single-homepage-slider" style="background-image: url({{ $slider->image() }});">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-10 offset-lg-1 text-right">
+							<div class="hero-text">
+								<div class="hero-text-tablecell">
+									<p class="subtitle"></p>
+									<h1>{{ $slider->title }}</h1>
+									<div class="hero-btns">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- single home slider -->
-		<div class="single-homepage-slider homepage-bg-3">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-10 offset-lg-1 text-right">
-						<div class="hero-text">
-							<div class="hero-text-tablecell">
-								<p class="subtitle"></p>
-								<h1>كل احتياجاتك في مكان واحد</h1>
-								<div class="hero-btns">
-									<a href="shop.html" class="boxed-btn">تسوق الان</a>
-									<a href="contact.html" class="bordered-btn">تواصل معنا</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- single home slider -->
-		<div class="single-homepage-slider homepage-bg-3">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-10 offset-lg-1 text-right">
-						<div class="hero-text">
-							<div class="hero-text-tablecell">
-								<p class="subtitle"></p>
-								<h1>كل احتياجاتك في مكان واحد</h1>
-								<div class="hero-btns">
-									<a href="shop.html" class="boxed-btn">تسوق الان</a>
-									<a href="contact.html" class="bordered-btn">تواصل معنا</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		@endforeach
 	</div>
 	<!-- end home page slider -->
 
@@ -130,203 +92,39 @@
 	<!-- product section -->
 	<div class="product-section mt-100 mb-150">
 		<div class="container">
-			<div class="star">
-				<div class="text-right mb-3">	
-					<h4><span class="orange-text">منتجات مميزة</span></h4>
-				</div>
-				<div class="row">
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-1.jpg" alt=""></a>
-							</div>
-							<h3>Strawberry</h3>
-							<p class="product-price"><span>Per Kg</span> 85$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
+			@foreach ($categories as $category)
+				<div class="star">
+					<div class="mb-3">	
+						<h4>
+							<span class="orange-text d-inline-block float-right">احدث منتجات {{ $category->title }}</span>
+							<a href="{{ url('/shop') . '/' . $category->slug }}" class="orange-text d-inline-block text-left">عرض الكل</a>
+						</h4>
 					</div>
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-2.jpg" alt=""></a>
+					<div class="row">
+						@foreach ($category->products->take(4) as $product)
+							<div class="col-lg-3 col-md-6 text-center">
+								<div class="single-product-item">
+									<div class="product-image">
+										<a href="{{ url('/product') . '/'. $product->units->first()->id }}"><img src="{{ asset($product->image()) }}" alt=""></a>
+									</div>
+									<h3>{{ $product->name }}</h3>
+									<p class="product-price"><span>{{ $product->units->first()->name }}</span> {{ $product->units->first()->price }} </p>
+									<button 
+										type="button" 
+										data-id="{{ $product->units->first()->id }}"
+										data-name="{{ $product->name }}"
+										data-price="{{ $product->units->first()->price }}"
+										class="cart-btn"
+										>
+										<i class="fas fa-shopping-cart"></i>
+										اضافة الى السلة
+								</button>
+								</div>
 							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-3.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-4.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
+						@endforeach
 					</div>
 				</div>
-			</div>
-			<div class="star">
-				<div class="mb-3">	
-					<h4>
-						<span class="orange-text d-inline-block float-right">احدث منتجات التمور</span>
-						<span class="orange-text d-inline-block text-left">عرض الكل</span>
-					</h4>
-				</div>
-				<div class="row">
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-1.jpg" alt=""></a>
-							</div>
-							<h3>Strawberry</h3>
-							<p class="product-price"><span>Per Kg</span> 85$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-3.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-4.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="star">
-				<div class="mb-3">	
-					<h4>
-						<span class="orange-text d-inline-block float-right">احدث منتجات الفواكه</span>
-						<span class="orange-text d-inline-block text-left">عرض الكل</span>
-					</h4>
-				</div>
-				<div class="row">
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-1.jpg" alt=""></a>
-							</div>
-							<h3>Strawberry</h3>
-							<p class="product-price"><span>Per Kg</span> 85$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-3.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-4.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="star">
-				<div class="mb-3">	
-					<h4>
-						<span class="orange-text d-inline-block float-right">احدث منتجات الخضروات</span>
-						<span class="orange-text d-inline-block text-left">عرض الكل</span>
-					</h4>
-				</div>
-				<div class="row">
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-1.jpg" alt=""></a>
-							</div>
-							<h3>Strawberry</h3>
-							<p class="product-price"><span>Per Kg</span> 85$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-2.jpg" alt=""></a>
-							</div>
-							<h3>Berry</h3>
-							<p class="product-price"><span>Per Kg</span> 70$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-3.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 offset-md-3 offset-lg-0 text-center">
-						<div class="single-product-item">
-							<div class="product-image">
-								<a href="single-product.html"><img src="{{ asset('front') }}/assets/img/products/product-img-4.jpg" alt=""></a>
-							</div>
-							<h3>Lemon</h3>
-							<p class="product-price"><span>Per Kg</span> 35$ </p>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 	<!-- end product section -->

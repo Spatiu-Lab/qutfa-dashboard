@@ -34,7 +34,10 @@ Auth::routes();
 
 Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/shop/{slug}', [FrontController::class, 'shop'])->name('shop');
+Route::get('/product/{slug}', [FrontController::class, 'product'])->name('product');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::get('/cart', [FrontController::class, 'cart'])->name('cart');
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index']);
 
