@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HelperController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
@@ -31,7 +32,12 @@ use App\Http\Controllers\NotificationsController;
 
 Auth::routes();
 
-Route::get('/', function () {return view('front.index');})->name('home');
+Route::get('/', [FrontController::class, 'index'])->name('home');
+Route::get('/about', [FrontController::class, 'about'])->name('about');
+Route::get('/shop/{slug}', [FrontController::class, 'shop'])->name('shop');
+Route::get('/product/{slug}', [FrontController::class, 'product'])->name('product');
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::get('/cart', [FrontController::class, 'cart'])->name('cart');
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index']);
 
@@ -41,7 +47,7 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
 
     Route::middleware(['CheckRole:ADMIN'])->group(function () {
 
-        
+
         Route::resource('announcements',AnnouncementController::class);
         Route::resource('files',FileController::class);
         Route::post('contacts/resolve',[ContactController::class,'resolve'])
@@ -70,6 +76,7 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
 
         // units routes
         Route::resource('units',UnitController::class);
+        Route::resource('sliders',  SliderController::class);
 
         // products routes
         Route::resource('products',ProductController::class);
@@ -96,16 +103,16 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
         Route::get('/ajax',[NotificationsController::class,'notifications_ajax'])->name('ajax');
         Route::post('/see',[NotificationsController::class,'notifications_see'])->name('see');
     });
-    
+
 });
 
 
 Route::get('blocked',[HelperController::class,'blocked_user'])->name('blocked');
 Route::get('robots.txt',[HelperController::class,'robots']);
 Route::get('manifest.json',[HelperController::class,'manifest'])->name('manifest');
-Route::get('sitemap.xml',[SiteMapController::class,'sitemap']);
-Route::get('sitemaps/links','SiteMapController@custom_links');
-Route::get('sitemaps/{name}/{page}/sitemap.xml',[SiteMapController::class,'viewer']);
+//Route::get('sitemap.xml',[SiteMapController::class,'sitemap']);
+//Route::get('sitemaps/links','SiteMapController@custom_links');
+//Route::get('sitemaps/{name}/{page}/sitemap.xml',[SiteMapController::class,'viewer']);
 
 
 Route::view('contact','front.pages.contact')->name('contact');

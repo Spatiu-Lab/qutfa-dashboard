@@ -16,78 +16,83 @@
                             </div>
                             <div class="col-12 divider" style="min-height: 2px;"></div>
                         </div>
-                        <div class="col-12 p-3 row">
-                            <div class="col-12 col-lg-6 p-2">
-                                <div class="col-12">
-                                    الاسم
+                        
+                            <div class="col-12 p-3 row">
+                                @foreach(config('translatable.locales') as $key)
+                                    <div class="col-12 col-lg-6 p-2">
+                                        <div class="col-12">
+                                            الاسم {{__('lang.' . $key)}}
+                                        </div>
+                                        <div class="col-12 pt-3">
+                                            <input type="text" name="name[{{$key}}]" required maxlength="190" class="form-control"
+                                                value="{{ old('name[' . $key .']') }}">
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                <div class="col-12 col-lg-6 p-2">
+                                    <div class="col-12">
+                                        الصورة
+                                    </div>
+                                    <div class="col-12 pt-3">
+                                        <input type="file" name="image" class="form-control" accept="image/*">
+                                    </div>
+                                    <div class="col-12 pt-3">
+
+                                    </div>
                                 </div>
-                                <div class="col-12 pt-3">
-                                    <input type="text" name="name" required maxlength="190" class="form-control"
-                                        value="{{ old('name') }}">
+
+
+                                <div class="col-12 col-lg-6 p-2">
+                                    <div class="col-12">
+                                        القسم الرئيسي
+                                    </div>
+                                    {{-- onchange="getSubCategories(this.value)" --}}
+                                    <div class="col-12 pt-3">
+                                        <select name="category_id" class="form-control" id="category">
+                                            <option value="">القسم </option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-12 pt-3">
+
+                                    </div>
+                                </div>
+
+                                {{-- <div class="col-12 col-lg-6 p-2">
+                                    <div class="col-12">
+                                        القسم الفرعي
+                                    </div>
+                                    <div class="col-12 pt-3">
+                                        <select name="category_id" class="form-control" id="sub-categories"></select>
+                                    </div>
+                                </div> --}}
+
+                                <div class="col-12 p-2">
+                                    <div class="col-12">
+                                        الحالة
+                                    </div>
+                                    <div class="col-12 pt-3">
+                                        <select name="status" id="" class="form-control">
+                                            @foreach ($status as $stat)
+                                                <option value="{{ $stat }}">{{ __('status.' . $stat) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-12  p-2">
+                                    <div class="col-12">
+                                        الوصف
+                                    </div>
+                                    <div class="col-12 pt-3">
+                                        <textarea name="description" class="editor with-file-explorer">{{ old('description') }}</textarea>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-12 col-lg-6 p-2">
-                                <div class="col-12">
-                                    الصورة
-                                </div>
-                                <div class="col-12 pt-3">
-                                    <input type="file" name="image" class="form-control" accept="image/*">
-                                </div>
-                                <div class="col-12 pt-3">
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-12 col-lg-6 p-2">
-                                <div class="col-12">
-                                    القسم الرئيسي
-                                </div>
-                                <div class="col-12 pt-3">
-                                    <select class="form-control" id="category" onchange="getSubCategories(this.value)">
-                                        <option value="">القسم الرئيسي</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-12 pt-3">
-
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-lg-6 p-2">
-                                <div class="col-12">
-                                    القسم الفرعي
-                                </div>
-                                <div class="col-12 pt-3">
-                                    <select name="category_id" class="form-control" id="sub-categories"></select>
-                                </div>
-                            </div>
-
-                            <div class="col-12 p-2">
-                                <div class="col-12">
-                                    الحالة
-                                </div>
-                                <div class="col-12 pt-3">
-                                    <select name="status" id="" class="form-control">
-                                        @foreach ($status as $stat)
-                                            <option value="{{ $stat }}">{{ __('status.' . $stat) }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-12  p-2">
-                                <div class="col-12">
-                                    الوصف
-                                </div>
-                                <div class="col-12 pt-3">
-                                    <textarea name="description" class="editor with-file-explorer">{{ old('description') }}</textarea>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="col-12 col-lg-12 main-box">
@@ -145,6 +150,7 @@
                 success: function(data) {
                     $('#sub-categories').html('')
                     data.forEach(category => {
+                        console.log(category.title);
                         var option = `
 							<option value="` + category.id + `">` + category.title + `</option>
 						`
