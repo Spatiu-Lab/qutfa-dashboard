@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,14 +22,10 @@ class AuthController extends Controller
                 ], 404);
             }
 
-        $token = $user->createToken('my-app-token')->plainTextToken;
+        $user['token'] = $user->createToken('my-app-token')->plainTextToken;
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
 
-        return response($response, 201);
+        return UserResource::make($user);
     }
 
     public function register(RegisterRequest $request) {
@@ -38,15 +35,9 @@ class AuthController extends Controller
 
         $user = User::create($data);
 
-        $token = $user->createToken('my-app-token')->plainTextToken;
+        $user['token'] = $user->createToken('my-app-token')->plainTextToken;
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-
-        return response($response, 201);
+        return UserResource::make($user);
     }
 
     public function logout() {

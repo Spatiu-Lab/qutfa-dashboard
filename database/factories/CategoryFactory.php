@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
  */
-class ProductFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,13 +18,15 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => [
+            'user_id' => User::first()->id,
+            'title' => [
                 'ar' => $this->faker->word(),
                 'en' => $this->faker->word(),
             ],
             'image' => env('DEFAULT_IMAGE'),
+            'slug' => $this->faker->slug(),
             'description' => $this->faker->sentence(),
-            'category_id' => Category::first()->id
+            'meta_description' => $this->faker->sentence(),
         ];
     }
 }
