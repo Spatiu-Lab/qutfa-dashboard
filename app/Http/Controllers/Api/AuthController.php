@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -29,15 +31,21 @@ class AuthController extends Controller
     }
 
     public function register(RegisterRequest $request) {
-        $data = $request->validated();
 
-        $data['password'] = bcrypt($request->password);
+        return DB::transaction(function() use($request) {
+            $data = $request->validated();
 
-        $user = User::create($data);
+            $data['password'] = bcrypt($request->password);
 
-        $user['token'] = $user->createToken('my-app-token')->plainTextToken;
+            $user = User::create($data);
 
-        return UserResource::make($user);
+            Customer::updateOrCreate($data);
+
+            $user['token'] = $user->createToken('my-app-token')->plainTextToken;
+
+            return UserResource::make($user);
+        });
+
     }
 
     public function logout() {
