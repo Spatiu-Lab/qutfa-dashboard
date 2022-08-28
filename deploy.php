@@ -49,7 +49,7 @@ task('deploy', [
     // 'artisan:config:cache',
     'artisan:optimize:clear',
     'artisan:migrate',
-    'artisan:db:seed',
+    // 'artisan:db:seed',
     // 'npm:install',
     // 'npm:run:prod',
     'deploy:publish',
