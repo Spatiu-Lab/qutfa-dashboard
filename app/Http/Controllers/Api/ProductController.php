@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductRescource;
+use App\Models\ProductUnit;
 
 class ProductController extends Controller
 {
@@ -14,16 +15,15 @@ class ProductController extends Controller
      * @queryParam name string filter by product name . No-example .
      */
     public function index(Request $request) {
-        $products =  Product::when($request->query('category_id'),fn($q) => $q->where('category_id',$request->category_id))
-        ->when($request->query('name'),fn($q) => $q->where('name','LIKE','%' . $request->name . '%'))
-        ->where('status',Product::STATUS_AVAILABLE)
+        $products =  ProductUnit::query()
+        ->when($request->query('category_id') , fn($q) => $q->where('category_id',$request->category_id))
+        ->when($request->query('name') , fn($q) => $q->where('name','LIKE','%' . $request->name . '%'))
         ->orderBy('id','DESC')
         ->paginate(10);
-
         return ProductRescource::collection($products);
     }
 
-    public function show(Product $product) {
-        return ProductRescource::make($product->load('category'));
+    public function show(ProductUnit $product) {
+        return ProductRescource::make($product);
     }
 }
