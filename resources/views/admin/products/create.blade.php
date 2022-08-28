@@ -47,9 +47,10 @@
                                     <div class="col-12">
                                         القسم الرئيسي
                                     </div>
+                                    {{-- onchange="getSubCategories(this.value)" --}}
                                     <div class="col-12 pt-3">
-                                        <select class="form-control" id="category" onchange="getSubCategories(this.value)">
-                                            <option value="">القسم الرئيسي</option>
+                                        <select name="category_id" class="form-control" id="category">
+                                            <option value="">القسم </option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->title }}</option>
                                             @endforeach
@@ -60,14 +61,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-6 p-2">
+                                {{-- <div class="col-12 col-lg-6 p-2">
                                     <div class="col-12">
                                         القسم الفرعي
                                     </div>
                                     <div class="col-12 pt-3">
                                         <select name="category_id" class="form-control" id="sub-categories"></select>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-12 p-2">
                                     <div class="col-12">
