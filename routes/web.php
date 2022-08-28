@@ -29,6 +29,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ContactReplyController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\OrderController;
 
 Auth::routes();
 
@@ -82,6 +83,9 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
         Route::resource('products',ProductController::class);
         Route::get('sub-categories/ajax/{category}',[CategoryController::class,'getSubCategories']);
 
+        Route::resource('orders',OrderController::class);
+
+
     });
 
     Route::prefix('upload')->name('upload.')->group(function(){
@@ -121,3 +125,5 @@ Route::get('category/{category}',[FrontController::class,'category'])->name('cat
 Route::get('article/{article}',[FrontController::class,'article'])->name('article.show');
 Route::get('blog',[FrontController::class,'blog'])->name('blog');
 Route::post('contact',[FrontController::class,'contact_post'])->name('contact-post');
+
+
