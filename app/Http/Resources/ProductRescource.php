@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductRescource extends JsonResource
@@ -15,11 +16,12 @@ class ProductRescource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'image' => asset($this->image()),
-            'description' => $this->description,
-            'category' => CategoryResource::make($this->whenLoaded('category'))
+            'id'            => $this->id,
+            'name'          => $this->product->name,
+            'image'         => asset($this->product->image()),
+            'description'   => strip_tags($this->product->description),
+            'unit'          => $this->unit->name,
+            'category'      => CategoryResource::make($this->whenLoaded('category'))
         ];
     }
 }
