@@ -405,12 +405,13 @@ p:last-child {
   background-color: #162133;
 }
 
-a.boxed-btn {
+.boxed-btn {
   font-family: 'Poppins', sans-serif;
   display: inline-block;
   background-color: #BE1E2D;
   color: #fff;
   padding: 10px 20px;
+  border: unset;
 }
 
 a.bordered-btn {
@@ -435,7 +436,7 @@ a.read-more-btn:hover {
   color: #BE1E2D;
 }
 
-a.boxed-btn, a.bordered-btn, button.cart-btn {
+.boxed-btn, a.bordered-btn, button.cart-btn {
   border-radius: 50px;
 }
 
@@ -1002,13 +1003,13 @@ a.navbar-brand:hover {
   opacity: 0.7;
 }
 
-a.boxed-btn {
+.boxed-btn {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
 }
 
-a.boxed-btn:hover {
+.boxed-btn:hover {
   background-color: #051922;
   color: #BE1E2D;
 }
@@ -1650,7 +1651,7 @@ p.excerpt {
   color: #555;
 }
 
-.latest-news a.boxed-btn {
+.latest-news .boxed-btn {
   margin-top: 80px;
 }
 

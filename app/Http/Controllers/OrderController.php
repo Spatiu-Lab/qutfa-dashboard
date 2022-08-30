@@ -14,7 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('user')->withCount('products')->get();
+        $orders = Order::with('user')->withCount('products')->paginate();
 
         return view('admin.orders.index',compact('orders'));
     }
@@ -46,9 +46,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        return view('admin.orders.show',compact('order'));
     }
 
     /**
