@@ -32,16 +32,26 @@
                                 <th>عدد المنتجات </th>
                                 <th>الاجمالي</th>
                                 <th>وقت الطلب</th>
+                                <th>خيارات</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
                                     <td>{{ $order->id }}</td>
-                                    <td>{{ $order->user->email }}</td>
-                                    <td>{{ $order->products_count }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $order->products->count() }}</td>
                                     <td>{{ $order->total }}</td>
                                     <td>{{ Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</td>
+                                    <td>
+                                        @can('update', $order)
+                                            <a href="{{ route('admin.orders.show', $order) }}">
+                                                <span class="btn  btn-outline-info btn-sm font-1 mx-1">
+                                                    <span class="fas fa-eye "></span> عرض
+                                                </span>
+                                            </a>
+                                        @endcan
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -49,7 +59,7 @@
                 </div>
             </div>
             <div class="col-12 p-3">
-                {{-- {{ $orders->appends(request()->query())->render() }} --}}
+                {{ $orders->appends(request()->query())->render() }}
             </div>
         </div>
     </div>

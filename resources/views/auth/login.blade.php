@@ -131,7 +131,7 @@
 					<div class="col-lg-7">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <div class="col-12 p-0 mb-5" style="width: 550px;max-width: 100%;margin: 0px auto;">
+                            <div class="col-12 p-0 mb-5 text-center" style="width: 550px;max-width: 100%;margin: 0px auto;">
                                 <h3 class="mb-4">{{ __('lang.login') }}</h3>
                                 <div class="divider"></div>
                             </div>
@@ -180,6 +180,14 @@
                                             {{ __('lang.forget_your_password') }}
                                         </a>
                                     @endif --}}
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-3 ">
+                                <label for="password" class="col-md-4 col-form-label text-md-end">
+                                    <a href="{{ route('register') }}">حساب جديد</a>
+                                </label>
+                                <div class="col-md-6">
                                 </div>
                             </div>
                         </form>

@@ -7,6 +7,7 @@ use App\Models\Slider;
 use App\Models\Article;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductUnit;
 use Illuminate\Http\Request;
@@ -60,6 +61,37 @@ class FrontController extends Controller
     {
         $product = ProductUnit::with('product', 'unit')->where('id', $product)->first();
         return view('front.pages.product', compact('product'));
+    }
+
+    public function checkout()
+    {
+        return view('front.pages.checkout');
+    }
+
+    public function storeOrder(Request $request)
+    {
+        $request->validate([
+            'product_id'    => ['required', 'array'],
+            'quantity'      => ['required', 'array'],
+            'address'      => ['required', 'string'],
+        ]);
+
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'total' => $request->total,
+            'address' => $request->address,
+        ]);
+
+        foreach ($request->quantity as $index => $quantity) {
+            $order->products()->create([
+                'product_id'    => $request->product_id[$index],
+                'price'         => $request->price[$index],
+                'quantity'    => $quantity,
+            ]);
+        }
+       
+
+        return redirect('/');
     }
 
     

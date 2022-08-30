@@ -10,6 +10,7 @@ return [
 	"forget_your_password"=>"هل نسيت كلمة المرور ؟",
 	"login"=>"تسجيل الدخول",
 	"phone"=>"رقم الهاتف",
+	"address"=>"العنوان",
 
 	// register
 	"register"=>"تسجيل",

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -49,9 +50,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if(\MainHelper::recaptcha($data['recaptcha'])<0.8)abort(401);
+        // if(\MainHelper::recaptcha($data['recaptcha'])<0.8)abort(401);
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -65,10 +67,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $customer = Customer::create([
+            'name'      => $data['name'],
+            'phone'     => $data['phone'],
+            'address'   => $data['address'],
+            'email'     => $data['email'],
+        ]);
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name'              => $data['name'],
+            'phone'             => $data['phone'],
+            'email'             => $data['email'],
+            'power'             => 'CUSTOMER',
+            'customer_id'       => $customer->id,
+            'password'          => Hash::make($data['password']),
         ]);
     }
 }
