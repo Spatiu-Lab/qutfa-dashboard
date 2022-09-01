@@ -21,7 +21,7 @@ class CheckRole
         if (auth()->check() && in_array(auth()->user()->power, explode('|', $roles))  ) {
             return $next($request);
         }
-        abort(403);
+        abort(404);
         return redirect('login');
     }
 }

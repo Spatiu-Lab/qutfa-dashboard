@@ -40,6 +40,7 @@
                                             <p><input type="email" placeholder="Email"></p>
                                             <p><input type="text" placeholder="Address"></p>
                                             <p><input type="tel" placeholder="Phone"></p> --}}
+                                            <p><input type="number" name="phone"  placeholder="رقم الهاتف"></p>
                                             <p><textarea name="address" id="bill" cols="30" rows="10" placeholder="العنوان"></textarea></p>
                                             <button type="submit" class="boxed-btn">ارسال الطلب</button>
                                         </form>

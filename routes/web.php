@@ -43,16 +43,18 @@ Route::get('/cart', [FrontController::class, 'cart'])->name('cart');
 Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [FrontController::class, 'checkout'])->name('checkout');
     Route::post('/orders', [FrontController::class, 'storeOrder'])->name('orders.store');
+    Route::get('/orders', [FrontController::class, 'orders'])->name('orders.index');
+    Route::get('/orders/{order}', [FrontController::class, 'showOrder'])->name('orders.show');
 });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index']);
 
 Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->group(function () {
 
-    Route::get('/',[AdminController::class,'index'])->name('index');
 
     Route::middleware(['CheckRole:ADMIN'])->group(function () {
 
+        Route::get('/',[AdminController::class,'index'])->name('index');
 
         Route::resource('announcements',AnnouncementController::class);
         Route::resource('files',FileController::class);
@@ -88,7 +90,9 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
         Route::resource('products',ProductController::class);
         Route::get('sub-categories/ajax/{category}',[CategoryController::class,'getSubCategories']);
 
+        // orders routes
         Route::resource('orders',OrderController::class);
+        Route::put('orders/status/{order}',[OrderController::class, 'updateStatus'])->name('orders.status');
 
 
     });

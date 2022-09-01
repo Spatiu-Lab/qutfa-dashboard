@@ -66,11 +66,21 @@
 								</li>
 								<li><a href="{{ url('about') }}">نبذة عننا</a></li>
 								@isset($nav_categories)
-									@foreach($nav_categories as $nav_category)
-										<li><a href="{{ url('shop') . '/' . $nav_category->slug }}">{{ $nav_category->title }}</a></li>
-									@endforeach
+									<li><a href="#">الاقسام</a>
+										<ul class="sub-menu">
+											@foreach($nav_categories as $nav_category)
+												<li><a href="{{ url('shop') . '/' . $nav_category->slug }}">{{ $nav_category->title }}</a></li>
+											@endforeach
+										</ul>
+									</li>
+									
 								@endisset
 								<li><a href="{{ url('/contact') }}">تواصل معنا</a></li>
+								@auth
+									<li><a href="{{ url('/orders') }}">الطلبات</a></li>
+								@else
+									<li><a href="{{ url('/login') }}">دخول</a></li>
+								@endauth
 								<li>
 									<div class="header-icons">
 										<a class="shopping-cart" href="{{ url('/cart') }}">

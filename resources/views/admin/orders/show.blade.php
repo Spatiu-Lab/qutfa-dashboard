@@ -47,8 +47,16 @@
                                 <td>{{ $order->address }}</td>
                             </tr>
                             <tr>
+                                <th>ؤقم الهاتف</th>
+                                <td>{{ $order->phone }}</td>
+                            </tr>
+                            <tr>
                                 <th>تاريخ الطلب</th>
                                 <td>{{ $order->created_at->format('Y-m-d H:i') }}</td>
+                            </tr>
+                            <tr>
+                                <th>الحالة</th>
+                                <td>@lang('status.' . $order->status)</td>
                             </tr>
                         </thead>
                     </table>
