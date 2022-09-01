@@ -57,7 +57,11 @@
 							</table>
 							<div class="cart-buttons">
 								<!-- <a href="cart.html" class="boxed-btn">Update Cart</a> -->
-								<a href="#" class="boxed-btn black">اكمال الطلب</a>
+								@auth
+									<a href="{{ route('checkout') }}" class="boxed-btn black">اكمال الطلب</a>
+								@else 
+									<a href="{{ route('login') }}" class="boxed-btn black">اكمال الطلب</a>
+								@endguest
 							</div>
 						</div>
 	
@@ -93,7 +97,7 @@
 						<td class="product-quantity"><input data-id="${item.id}" id="product-quantity" type="number" placeholder="0" value="${item.quantity}"></td>
 						<td class="product-total">${ Number(item.price) * Number(item.quantity) }</td>
 					</tr>`).join("")
-			$total.innerHTML = "$" + cartLS.total()
+			$total.innerHTML = cartLS.total() + "  ريال  "  ;
 		}
 
 		function removeItem(e) {
