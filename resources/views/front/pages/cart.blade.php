@@ -60,7 +60,7 @@
 								@auth
 									<a href="{{ route('checkout') }}" class="boxed-btn black">اكمال الطلب</a>
 								@else 
-									<a href="{{ route('login') }}" class="boxed-btn black">تسجيل دخول لاكمال الطلب</a>
+									<a href="{{ route('login') }}" class="boxed-btn black">اكمال الطلب</a>
 								@endguest
 							</div>
 						</div>

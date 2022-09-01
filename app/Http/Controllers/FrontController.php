@@ -17,7 +17,7 @@ class FrontController extends Controller
 {
     protected $nav_categories;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->nav_categories = Category::limit(4)->get();
         View::share('nav_categories', $this->nav_categories);
@@ -73,13 +73,14 @@ class FrontController extends Controller
         $request->validate([
             'product_id'    => ['required', 'array'],
             'quantity'      => ['required', 'array'],
-            'address'      => ['required', 'string'],
+            'address'       => ['required', 'string'],
         ]);
 
         $order = Order::create([
-            'user_id' => auth()->user()->id,
-            'total' => $request->total,
-            'address' => $request->address,
+            'user_id'   => auth()->user()->id,
+            'total'     => $request->total,
+            'address'   => $request->address,
+            'phone'     => $request->phone,
         ]);
 
         foreach ($request->quantity as $index => $quantity) {
@@ -89,9 +90,21 @@ class FrontController extends Controller
                 'quantity'    => $quantity,
             ]);
         }
-       
 
         return redirect('/');
+    }
+
+    public function orders()
+    {
+        $orders = Order::where('user_id', auth()->user()->id)
+        ->orderByDesc('created_at')
+        ->get();
+        return view('front.pages.orders', compact('orders'));
+    }
+
+    public function showOrder(Order $order)
+    {
+        return view('front.pages.order', compact('order'));
     }
 
     

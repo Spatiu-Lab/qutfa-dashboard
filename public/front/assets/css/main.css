@@ -2755,3 +2755,9 @@ table.order-details tbody td {
   vertical-align: middle;
   width: 100%;
 }
+
+.cart-counter {
+  position: absolute;
+  right: 12px;
+  top: 13px;
+}

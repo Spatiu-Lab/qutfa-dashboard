@@ -14,9 +14,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with('user')->withCount('products')->paginate();
-
-        return view('admin.orders.index',compact('orders'));
+        $orders = Order::filter()->with('user')->withCount('products')->paginate();
+        $status = Order::STATUS;
+        return view('admin.orders.index',compact('orders', 'status'));
     }
 
     /**
@@ -83,5 +83,28 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateStatus(Order $order)
+    {
+        switch ($order->status) {
+            case Order::STATUS_WAITTING:
+                $order->update([
+                    'status' => Order::STATUS_ACCPETED
+                ]);
+                break;
+            case Order::STATUS_ACCPETED:
+                $order->update([
+                    'status' => Order::STATUS_DELIVERY
+                ]);
+                break;
+            case Order::STATUS_DELIVERY:
+                $order->update([
+                    'status' => Order::STATUS_DELIVERED
+                ]);
+                break;
+        }
+
+        return back();
     }
 }
