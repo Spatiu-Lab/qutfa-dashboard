@@ -44,7 +44,7 @@ task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
     // 'artisan:key:generate',
-    // 'artisan:storage:link',
+    'artisan:storage:link',
     // 'artisan:view:cache',
     // 'artisan:config:cache',
     'artisan:optimize:clear',

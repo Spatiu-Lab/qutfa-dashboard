@@ -78,6 +78,7 @@
 								<li><a href="{{ url('/contact') }}">تواصل معنا</a></li>
 								@auth
 									<li><a href="{{ url('/orders') }}">الطلبات</a></li>
+									<li><a href="#" onclick="document.getElementById('logout-form').submit();">تسجيل خروج</a></li>
 								@else
 									<li><a href="{{ url('/login') }}">دخول</a></li>
 								@endauth
@@ -90,6 +91,7 @@
 										<!-- <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a> -->
 									</div>
 								</li>
+								<form method="POST" action="{{ route('logout') }}" id="logout-form" class="d-none">@csrf</form>
 							</ul>
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
