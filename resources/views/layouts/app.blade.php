@@ -73,7 +73,10 @@
 								<li><a href="{{ url('/contact') }}">تواصل معنا</a></li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="{{ url('/cart') }}"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="{{ url('/cart') }}">
+											<i class="fas fa-shopping-cart"></i>
+											<i class="badge badge-danger cart-counter">0</i>
+										</a>
 										<!-- <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a> -->
 									</div>
 								</li>
@@ -147,6 +150,11 @@
 				name : $(this).data('name'),
 				price : $(this).data('price')
 			})
+			$('.cart-counter').text(Object.keys(cartLS.list()).length)
+		})
+
+		$(function () {
+			$('.cart-counter').text(Object.keys(cartLS.list()).length)
 		})
 	</script>
 	{{-- @yield('scripts') --}}
