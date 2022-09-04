@@ -73,7 +73,6 @@
 											@endforeach
 										</ul>
 									</li>
-									
 								@endisset
 								<li><a href="{{ url('/contact') }}">تواصل معنا</a></li>
 								@auth
