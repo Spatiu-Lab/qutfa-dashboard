@@ -25,9 +25,10 @@ class StoreOrderRequest extends FormRequest
     {
 
         return [
-            'items' => 'required|array',
-            /* 'items.item' => 'required|integer',
-            'items.quantity' => 'required|integer', */
+            'items'     => 'required|array',
+            'total'     => ['required', 'string'],
+            'address'   => ['required', 'string'],
+            'phone'     => ['required', 'string'],
         ];
     }
 }

@@ -25,8 +25,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('logout',[AuthController::class,'logout']);
 
     Route::resource('products',ProductController::class)->only('index','show');
-
     Route::resource('categories',CategoryControlller::class)->only('index','show');
+    Route::resource('orders',OrderController::class);
 
     Route::post('orders',[OrderController::class,'index']);
 
