@@ -28,6 +28,6 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::resource('categories',CategoryControlller::class)->only('index','show');
     Route::resource('orders',OrderController::class);
 
-    Route::post('orders',[OrderController::class,'index']);
+    // Route::post('orders',[OrderController::class,'index']);
 
 });
