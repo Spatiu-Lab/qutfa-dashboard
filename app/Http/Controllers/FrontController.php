@@ -101,8 +101,6 @@ class FrontController extends Controller
 
         event(new OrderEvent($order));
 
-        dd("done");
-
         return redirect()->route('orders.show', $order->id);
     }
 
