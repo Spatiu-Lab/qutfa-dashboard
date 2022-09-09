@@ -113,6 +113,7 @@
 										type="button" 
 										data-id="{{ $product->units->first()->id }}"
 										data-name="{{ $product->name }}"
+										data-unit="{{ $product->units->first()->name }}"
 										data-price="{{ $product->units->first()->price }}"
 										class="cart-btn"
 										>

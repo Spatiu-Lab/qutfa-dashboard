@@ -1,5 +1,19 @@
 @extends('layouts.app',['title'=> $product->product->name])
 
+@push('styles')
+	<style>
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+			margin: 0;
+		}
+		/* Firefox */
+		input[type=number] {
+		-moz-appearance: textfield;
+		}
+	</style>
+@endpush
+
 @section('content')
 		<!-- breadcrumb-section -->
 		<div class="breadcrumb-section breadcrumb-bg">
@@ -39,6 +53,7 @@
 									type="button" 
 									data-id="{{ $product->id }}"
 									data-name="{{ $product->product->name }}"
+									data-unit="{{ $product->unit->name }}"
 									data-price="{{ $product->price }}"
 									class="cart-btn"
 									>

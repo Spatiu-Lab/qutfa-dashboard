@@ -1,4 +1,19 @@
 @extends('layouts.app',['title'=>"السلة"])
+
+@push('styles')
+	<style>
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+			margin: 0;
+		}
+		/* Firefox */
+		input[type=number] {
+		-moz-appearance: textfield;
+		}
+	</style>
+@endpush
+
 @section('content')
 		<!-- breadcrumb-section -->
 		<div class="breadcrumb-section breadcrumb-bg">
@@ -27,6 +42,7 @@
 										<th class="product-remove"></th>
 										{{-- <th class="product-image">صورة المنتج</th> --}}
 										<th class="product-name">الاسم</th>
+										<th class="product-name">الوحدة</th>
 										<th class="product-price">السعر</th>
 										<th class="product-quantity">الكمية</th>
 										<th class="product-total">الاجمالي</th>
@@ -92,9 +108,10 @@
 						<td class="product-remove">
 							<button data-item="${item.id}" onClick="removeItem(event)">حذف</button>
 						</td>
-						<td class="product-name">${item.name}</td>
+						<td class="product-name">${item.name.name}</td>
+						<td class="product-unit">${item.name.unit}</td>
 						<td class="product-price">${item.price}</td>
-						<td class="product-quantity"><input data-id="${item.id}" id="product-quantity" type="number" placeholder="0" value="${item.quantity}"></td>
+						<td class="product-quantity"><input data-id="${item.id}"  min="1" id="product-quantity" type="number" placeholder="0" value="${item.quantity}"></td>
 						<td class="product-total">${ Number(item.price) * Number(item.quantity) }</td>
 					</tr>`).join("")
 			$total.innerHTML = cartLS.total() + "  ريال  "  ;
@@ -107,6 +124,12 @@
 		}
 
 		$(document).on('keyup', '#product-quantity', function (e) {
+			var item = $(e.target).data('id')
+			cartLS.update(item,'quantity',$(e.target).val())
+			cartLS.onChange(renderCart)
+		})
+
+		$(document).on('change', '#product-quantity', function (e) {
 			var item = $(e.target).data('id')
 			cartLS.update(item,'quantity',$(e.target).val())
 			cartLS.onChange(renderCart)

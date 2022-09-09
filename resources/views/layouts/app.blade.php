@@ -159,7 +159,10 @@
 		$('.cart-btn').on('click', function () {
 			cartLS.add({
 				id : $(this).data('id'),
-				name : $(this).data('name'),
+				name : {
+					'name' : $(this).data('name'),
+					'unit' : $(this).data('unit'),
+				},
 				price : $(this).data('price')
 			})
 			$('.cart-counter').text(Object.keys(cartLS.list()).length)
