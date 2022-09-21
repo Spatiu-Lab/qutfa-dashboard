@@ -92,9 +92,25 @@
                             </div>
                         </div>
                     @endisset
-                    
+                    @isset($category)
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="form-group row">
+                                    <label for="users" class="col-sm-4 col-form-label"> القسم الرئيسي</label>
+                                    <div class="col-sm-8">
+                                        <select style="width: 100%" name="category" class="custom-select">
+                                            <option value="all">الكل</option>
+                                            @foreach ($category as $key => $cat)
+                                                <option value="{{ $key }}" {{ $key ==  request()->category ? 'selected' : '' }} >{{ $cat }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endisset
                 </div>
-                
+
             </div>
         </div>
     </form>

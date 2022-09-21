@@ -1,5 +1,26 @@
 @extends('layouts.admin')
 @section('content')
+@if ($order->status != "delivered")
+    <div class="m-5">
+        <span class="h2">حالة الطلب : </span>
+
+        @can('update', $order)
+            <form method="POST" action="{{route('admin.orders.status',$order)}}" class="d-inline-block">
+                @csrf @method("PUT")
+                <button class="btn  btn-outline-success btn-sm font-1 mx-1">
+                    <span class="fas fa-check "></span>
+                    @if ($order->status == 'waitting')
+                        تاكيد الطلب
+                    @elseif ($order->status == 'accepted')
+                        توصيل
+                    @elseif ($order->status == 'delivery')
+                        تم التوصيل
+                    @endif
+                </button>
+            </form>
+        @endcan
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -19,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th>البريد الالكتروني</th>
-                                <td>{{ $order->user->customer->email }}</td>
+                                <td>{{ $order->user->customer->email ?? '-' }}</td>
                             </tr>
                         </thead>
                     </table>
@@ -47,7 +68,7 @@
                                 <td>{{ $order->address }}</td>
                             </tr>
                             <tr>
-                                <th>ؤقم الهاتف</th>
+                                <th>رقم الهاتف</th>
                                 <td>{{ $order->phone }}</td>
                             </tr>
                             <tr>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Unit;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class UnitSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Unit::factory(2)->create();
     }
 }

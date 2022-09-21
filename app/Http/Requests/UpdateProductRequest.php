@@ -27,7 +27,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'status.*' => ['required', 'string', Rule::in(Product::STATUS)],
+            'status' => ['required', 'string', Rule::in(Product::STATUS)],
             'description' => ['required', 'string'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'image' => ['nullable', 'image','mimes:png,jpg'],

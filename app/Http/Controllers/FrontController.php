@@ -27,11 +27,12 @@ class FrontController extends Controller
         View::share('nav_categories', $this->nav_categories);
     }
 
-    
+
     public function index(Request $request)
     {
         $sliders = Slider::orderByDesc('created_at')->limit(4)->get();
         $categories = Category::limit(4)->get();
+        //dd($categories[0]->products->units);
         return view('front.index', compact('sliders', 'categories'));
     }
 
@@ -96,7 +97,7 @@ class FrontController extends Controller
         }
 
         $users = User::where('power', 'ADMIN')->get();
-        
+
         Notification::send($users, new OrderNotification($order));
 
         event(new OrderEvent($order));
@@ -117,7 +118,7 @@ class FrontController extends Controller
         return view('front.pages.order', compact('order'));
     }
 
-    
+
     public function contact_post(Request $request)
     {
         $request->validate([

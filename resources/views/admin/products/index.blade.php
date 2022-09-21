@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="filter my-3">
+        <div class="row">
+            <div class="col-md-12">
+                <x-filter-component :status="$status"></x-filter-component>
+            </div>
+        </div>
+    </div>
     <div class="col-12 p-3">
         <div class="col-12 col-lg-12 p-0 main-box">
             <div class="col-12 px-0">
