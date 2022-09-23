@@ -51,6 +51,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $order->load('orderLogs.user:id,name,email');
         return view('admin.orders.show', compact('order'));
     }
 
