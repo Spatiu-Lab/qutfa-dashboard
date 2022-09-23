@@ -17,13 +17,15 @@ class FilterComponent extends Component
     public $date;
     public $columns = [];
     public $params = [];
-    public function __construct($status = null , $clients = null , $date = null, $columns = [], $params = [])
+    public $category;
+    public function __construct($status = null , $clients = null , $date = null, $columns = [], $params = [], $category = null)
     {
         $this->status = $status;
         $this->date = $date;
         $this->clients = $clients;
         $this->columns = $columns;
         $this->params = $params;
+        $this->category = $category;
     }
 
     /**

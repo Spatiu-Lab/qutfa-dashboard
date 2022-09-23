@@ -2,8 +2,8 @@
 @section('content')
 <div class="col-12 p-3">
 	<div class="col-12 col-lg-12 p-0 ">
-	 
-		
+
+
 		<form id="validate-form" class="row" enctype="multipart/form-data" method="POST" action="{{route('admin.products.update',$product)}}">
 		@csrf
 		@method("PUT")
@@ -45,10 +45,10 @@
 							القسم الرئيسي
 						</div>
 						<div class="col-12 pt-3">
-							<select class="form-control" id="category" onchange="getSubCategories(this.value)">
+							<select class="form-control" id="category" onchange="getSubCategories(this.value)" name="category_id">
 								<option value="">القسم الرئيسي</option>
 								@foreach ($categories as $category)
-									<option value="{{ $category->id }}" {{ $product->category->category_id == $category->id ? 'selected' : '' }} >  {{ $category->title }}</option>
+									<option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }} >  {{ $category->title }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -57,14 +57,14 @@
 						</div>
 					</div>
 
-					<div class="col-12 col-lg-6 p-2">
+					{{-- <div class="col-12 col-lg-6 p-2">
 						<div class="col-12">
 							القسم الفرعي
 						</div>
 						<div class="col-12 pt-3">
 							<select name="category_id" class="form-control" id="sub-categories"></select>
 						</div>
-					</div>
+					</div> --}}
 
 					<div class="col-12 p-2">
 						<div class="col-12">

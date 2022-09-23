@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Category;
 use App\Models\ProductUnit;
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,13 +15,14 @@ class Product extends Model
 {
     use HasFactory;
     use HasTranslations;
+    use HasFilter;
 
     const STATUS_AVAILABLE = 'available';
     const STATUS_UNAVAILABLE = 'unavailable';
 
     const STATUS = [
-        self::STATUS_AVAILABLE,
-        self::STATUS_UNAVAILABLE,
+        self::STATUS_AVAILABLE => self::STATUS_AVAILABLE,
+        self::STATUS_UNAVAILABLE => self::STATUS_UNAVAILABLE,
     ];
 
     public $translatable = ['name'];

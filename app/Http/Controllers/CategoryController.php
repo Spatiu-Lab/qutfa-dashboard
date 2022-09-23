@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(Category::class, 'category'); 
+        $this->authorizeResource(Category::class, 'category');
     }
     /**
      * Display a listing of the resource.
@@ -21,14 +21,15 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories =  Category::where(function($q)use($request){
+        $categories =  Category::filter()->where(function($q)use($request){
             if($request->id!=null)
                 $q->where('id',$request->id);
             if($request->q!=null)
                 $q->where('title','LIKE','%'.$request->q.'%')->orWhere('description','LIKE','%'.$request->q.'%');
         })->orderBy('id','DESC')->paginate();
 
-        return view('admin.categories.index',compact('categories'));
+        $category = Category::whereNull('category_id')->pluck('title','id');
+        return view('admin.categories.index',compact('categories','category'));
     }
 
     /**
@@ -78,10 +79,10 @@ class CategoryController extends Controller
 
         if($request->hasFile('image')){
             $file = $this->store_file([
-                'source'=>$request->image,  
+                'source'=>$request->image,
                 'validation'=>"image",
                 'path_to_save'=>'/uploads/categories/',
-                'type'=>'CATEGORY', 
+                'type'=>'CATEGORY',
                 'user_id'=>\Auth::user()->id,
                 'resize'=>[500,1000],
                 'small_path'=>'small/',
@@ -89,7 +90,7 @@ class CategoryController extends Controller
                 'file_system_type'=>env('FILESYSTEM_DRIVER'),
                 /*'watermark'=>true,*/
                 'compress'=>'auto'
-            ]); 
+            ]);
             $category->update(['image'=>$file['filename']]);
         }
         toastr()->success('تم إضافة القسم بنجاح','عملية ناجحة');
@@ -114,7 +115,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
-    {   
+    {
         $categories = Category::all();
         return view('admin.categories.edit',compact('category', 'categories'));
     }
@@ -149,7 +150,7 @@ class CategoryController extends Controller
                 'source'=>$request->image,
                 'validation'=>"image",
                 'path_to_save'=>'/uploads/categories/',
-                'type'=>'CATEGORY', 
+                'type'=>'CATEGORY',
                 'user_id'=>\Auth::user()->id,
                 'resize'=>[500,1000],
                 'small_path'=>'small/',
@@ -157,7 +158,7 @@ class CategoryController extends Controller
                 'file_system_type'=>env('FILESYSTEM_DRIVER'),
                 /*'watermark'=>true,*/
                 'compress'=>'auto'
-            ]); 
+            ]);
             $category->update(['image'=>$file['filename']]);
         }
         toastr()->success('تم تحديث القسم بنجاح','عملية ناجحة');

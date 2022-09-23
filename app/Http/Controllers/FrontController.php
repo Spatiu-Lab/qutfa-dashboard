@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Slider;
 use App\Models\Article;
 use App\Models\Contact;
-use App\Models\Category;
-use App\Models\Order;
 use App\Models\Product;
+use App\Models\Category;
+use App\Events\OrderEvent;
 use App\Models\ProductUnit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Notifications\OrderNotification;
+use Illuminate\Support\Facades\Notification;
 
 class FrontController extends Controller
 {
@@ -23,11 +27,12 @@ class FrontController extends Controller
         View::share('nav_categories', $this->nav_categories);
     }
 
-    
+
     public function index(Request $request)
     {
         $sliders = Slider::orderByDesc('created_at')->limit(4)->get();
         $categories = Category::limit(4)->get();
+        //dd($categories[0]->products->units);
         return view('front.index', compact('sliders', 'categories'));
     }
 
@@ -91,7 +96,13 @@ class FrontController extends Controller
             ]);
         }
 
-        return redirect('/');
+        $users = User::where('power', 'ADMIN')->get();
+
+        Notification::send($users, new OrderNotification($order));
+
+        event(new OrderEvent($order));
+
+        return redirect()->route('orders.show', $order->id);
     }
 
     public function orders()
@@ -107,7 +118,7 @@ class FrontController extends Controller
         return view('front.pages.order', compact('order'));
     }
 
-    
+
     public function contact_post(Request $request)
     {
         $request->validate([

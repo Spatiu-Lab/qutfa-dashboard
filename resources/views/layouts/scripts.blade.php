@@ -1,5 +1,75 @@
 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
 <script type="text/javascript" src="/js/tinymce/ar.js"></script>
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script>
+
+    function getNotification() {
+        $.ajax({url:"{{ url('notifications') }}", dataType : 'JSON'})
+            .done((response) => {
+                
+                // if(response.data.length) {
+                //     $('.read-all-notifications').removeClass('d-none')
+                // }
+
+                response.data.length < 100 ? $('.notification-count').text(response.data.length) : $('.notification-count').text("+99");
+
+                $('.notification-list').html('');
+                
+                response.data.map(notification => {
+                    var link = notification.link;
+                    var li = `
+                        <div class="col-12">
+                            <a style="text-align:right" class="d-block hover-bg-200 p-2 rounded-3  text-decoration-none mb-3 text-right" href="${link}${link.search('\\?') > 0 ? `&notification=${notification.id}` : `?notification=${notification.id}` }" >
+                                <p class="mb-0 text-black text-truncate fs--4 mt-1 pt-1 text-right">${notification.user.full_name} <span class="noti-title"> ${notification.action} </p>
+                                <p class="noti-time text-black"><span class="notification-time text-right">${notification.created_at}</span></p>
+                            </a>
+                        </div>
+                    `;
+                    $('.notification-list').append(li)
+                });
+        })
+    }
+
+    function puchNotificationWeb(title,url)   
+    {
+    
+        if (Notification.permission !== "granted")  
+        {  
+            Notification.requestPermission();  
+        }  
+        else  
+        {  
+            var notification = new Notification(title, {  
+                icon:"{{ asset('front/assets/img/logo.png') }}",  
+            });  
+            
+            /* Remove the notification from Notification Center when clicked.*/  
+            notification.onclick = function () {  
+                window.open(url);
+            };  
+            
+            /* Callback function when the notification is closed. */  
+            notification.onclose = function () {  
+                //  
+            }; 
+        }  
+    }
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('26df05660b92785b99b9', {
+    cluster: 'ap2'
+    });
+
+    var order = pusher.subscribe('new-order');
+        order.bind('OrderEvent', function(data) {
+            alert("Sdfsdf");
+            var audio = new Audio("https://soundbible.com/mp3/Store_Door_Chime-Mike_Koenig-570742973.mp3");
+            // notify('info','طلب جديد ' , '');
+            puchNotificationWeb("طلب جديد", "{{ url('/admin/orders') }}")
+        });
+</script>
 <script>
 @if(auth()->check())
     tinymce.init({
