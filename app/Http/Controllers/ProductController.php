@@ -58,6 +58,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+
         return DB::transaction(function () use($request) {
              $product = Product::create($request->validated());
 
@@ -92,7 +93,7 @@ class ProductController extends Controller
                 }
             }
 
-            toastr()->success('تم إضافة القسم بنجاح','عملية ناجحة');
+            toastr()->success('تم إضافة المنتج بنجاح','عملية ناجحة');
             return redirect()->route('admin.products.index');
         });
     }
@@ -171,7 +172,7 @@ class ProductController extends Controller
                 }
             }
 
-            toastr()->success('تم إضافة القسم بنجاح','عملية ناجحة');
+            toastr()->success('تم تعديل المنتج بنجاح','عملية ناجحة');
             return redirect()->route('admin.products.index');
         });
     }

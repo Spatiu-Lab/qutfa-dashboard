@@ -69,7 +69,7 @@
                                     @foreach ($order->products as $product)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                            <td>{{ $product->product->product->name }}</td>
+                                            <td>{{ $product->product->name }}</td>
                                             <td>{{ $product->product->unit->name }}</td>
                                             <td>{{ $product->quantity }}</td>
                                             <td>{{ $product->price }}</td>

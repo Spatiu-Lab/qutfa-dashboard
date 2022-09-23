@@ -90,9 +90,9 @@ class FrontController extends Controller
 
         foreach ($request->quantity as $index => $quantity) {
             $order->products()->create([
-                'product_id'    => $request->product_id[$index],
-                'price'         => $request->price[$index],
-                'quantity'    => $quantity,
+                'product_unit_id'       => $request->product_id[$index],
+                'price'                 => $request->price[$index],
+                'quantity'              => $quantity,
             ]);
         }
 
