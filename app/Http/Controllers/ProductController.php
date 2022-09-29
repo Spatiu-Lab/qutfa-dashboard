@@ -28,13 +28,13 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products =  Product::query()
-        ->filter()
+        $products =  Product::filter()
         ->orderBy('id','DESC')
         ->paginate();
 
         $status = Product::STATUS;
-        return view('admin.products.index',compact('products','status'));
+        $categories = Category::all();
+        return view('admin.products.index',compact('products','status', 'categories'));
     }
 
     /**

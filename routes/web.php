@@ -30,6 +30,7 @@ use App\Http\Controllers\ContactReplyController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PrintController;
 
 Auth::routes();
 
@@ -94,6 +95,12 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
         Route::resource('orders',OrderController::class);
         Route::put('orders/status/{order}',[OrderController::class, 'updateStatus'])->name('orders.status');
 
+
+
+        // Print routes
+        Route::get('orders/print/{order}',[PrintController::class,'order'])->name('orders.print.order');
+        Route::get('print/products',[PrintController::class,'products'])->name('products.print');
+        Route::get('print/orders',[PrintController::class,'orders'])->name('orders.print');
 
     });
 

@@ -1,26 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-@if ($order->status != "delivered")
-    <div class="m-5">
-        <span class="h2">حالة الطلب : </span>
-
-        @can('update', $order)
-            <form method="POST" action="{{route('admin.orders.status',$order)}}" class="d-inline-block">
-                @csrf @method("PUT")
-                <button class="btn  btn-outline-success btn-sm font-1 mx-1">
-                    <span class="fas fa-check "></span>
-                    @if ($order->status == 'waitting')
-                        تاكيد الطلب
-                    @elseif ($order->status == 'accepted')
-                        توصيل
-                    @elseif ($order->status == 'delivery')
-                        تم التوصيل
-                    @endif
-                </button>
-            </form>
-        @endcan
-    </div>
-    @endif
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -50,7 +29,36 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4>بيانات الطلب</h4>
+                    <h4>
+                        بيانات الطلب
+                        @if ($order->status != "delivered")
+                            @can('update', $order)
+                                <form method="POST" action="{{route('admin.orders.status',$order)}}" class="d-inline-block float-left">
+                                    @csrf @method("PUT")
+                                    <button class="btn  btn-outline-success btn-sm font-1 mx-1">
+                                        <span class="fas fa-check "></span>
+                                        @if ($order->status == 'waitting')
+                                            تاكيد الطلب
+                                        @elseif ($order->status == 'accepted')
+                                            توصيل
+                                        @elseif ($order->status == 'delivery')
+                                            تم التوصيل
+                                        @endif
+                                    </button>
+                                </form>
+                            @endcan
+                        @endif
+                        @if($order->status != "waitting")
+                            <a 
+                                href="{{ route('admin.orders.print.order', $order) }}" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="btn btn-outline-secondary btn-sm"
+                            >
+                                <i class="fa fa-print"> طباعة </i>
+                            </a>
+                        @endif
+                    </h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered  table-hover text-center">
@@ -140,8 +148,8 @@
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $log->previous_status }}</td>
                                     <td>{{ $log->current_status }}</td>
-                                    <td>{{ $log->user->email ?? $log->user->name ?? '-'}}</td>
-                                    <td>{{ Carbon\Carbon::parse($log->created_at)->diffForHumans() }}</td>
+                                    <td>{{ $log->user->name ?? $log->user->name ?? '-'}}</td>
+                                    <td>{{ $log->created_at->diffForHumans()  }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

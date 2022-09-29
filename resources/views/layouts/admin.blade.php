@@ -77,7 +77,13 @@
             box-shadow: 0 1px 10px 0 rgb(0 0 0 / 10%), 0 2px 15px 0 rgb(0 0 0 / 5%)!important;
             opacity: 1;
         }
+
+        .phpdebugbar , .phpdebugbar-panel, .phpdebugbar-body {
+            direction: ltr !important;
+        }
     </style>
+
+    @stack('styles')
 </head>
 
 <body style="background: #f7f7f7" class="dash">
@@ -87,7 +93,7 @@
         }
     </style>
     @yield('after-body')
-  {{--   @if(flash()->message)
+    {{-- @if(flash()->message)
         <div style="position: absolute;z-index: 4444444444444;left: 35px;top: 80px;max-width: calc(100% - 70px);padding: 16px 22px;border-radius: 7px;overflow: hidden;width: 273px;border-right: 8px solid #374b52;background: #2196f3;color: #fff;cursor: pointer;"  onclick="$(this).slideUp();">
             <span class="fas fa-info-circle"></span> {{ flash()->message }} 
         </div>
@@ -100,31 +106,31 @@
         @endif
     </div>
 
-{{--<div class="modal fade" data-bs-backdrop="static" id="open-image-selector-modal" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
-      <div class="modal-dialog modal-xl  modal-fullscreen-sm-down ">
-        <div class="modal-content overflow-hidden">
-        <div class="col-12 px-0 d-flex row">
+    {{--<div class="modal fade" data-bs-backdrop="static" id="open-image-selector-modal" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
+        <div class="modal-dialog modal-xl  modal-fullscreen-sm-down ">
+            <div class="modal-content overflow-hidden">
+            <div class="col-12 px-0 d-flex row">
 
-            <div class="col-10 px-3 py-3">
-                <span class="fal fa-info-circle"></span>    إختر من الملفات
+                <div class="col-10 px-3 py-3">
+                    <span class="fal fa-info-circle"></span>    إختر من الملفات
+                </div>
+                <div class="col-2 px-3 align-items-center d-flex justify-content-end">
+                    <span class="far fa-times font-2 cursor-pointer mx-2" data-bs-dismiss="modal"></span>
+                </div>
+
+                <div class="col-12 divider" style="min-height: 2px;"></div>
+
             </div>
-            <div class="col-2 px-3 align-items-center d-flex justify-content-end">
-                <span class="far fa-times font-2 cursor-pointer mx-2" data-bs-dismiss="modal"></span>
+            <div class="modal-body p-0">
+                <div class="col-12">
+                    <livewire:files-viewer />
+                </div>
             </div>
-
-            <div class="col-12 divider" style="min-height: 2px;"></div>
-
+            
+            </div>
         </div>
-          <div class="modal-body p-0">
-            <div class="col-12">
-                <livewire:files-viewer />
-            </div>
-          </div>
-         
         </div>
-      </div>
-    </div>
- --}}
+    --}}
     @include('layouts.sidebar')
     <input type="hidden" id="current_selected_editor">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
