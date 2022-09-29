@@ -32,7 +32,7 @@
                         <thead>
                             <tr>
                                 <th>الاسم</th>
-                                <td>{{ $order->user->name }}</td>
+                                <td>{{ $order->user->name ?? '-'}}</td>
                             </tr>
                             <tr>
                                 <th>رقم الهاتف</th>
@@ -110,6 +110,38 @@
                                     <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->quantity * $product->price }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 my-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>سجل الطلب</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered  table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الحالة السابقة </th>
+                                <th>الحالة الحالية </th>
+                                <th>المشرف</th>
+                                <th>الزمن</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($order->orderLogs as $log)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $log->previous_status }}</td>
+                                    <td>{{ $log->current_status }}</td>
+                                    <td>{{ $log->user->email ?? $log->user->name ?? '-'}}</td>
+                                    <td>{{ Carbon\Carbon::parse($log->created_at)->diffForHumans() }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
