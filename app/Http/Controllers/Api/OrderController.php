@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     public function index() {
-        $orders = Order::where('user_id', auth::id())->paginate();
+        $orders = Order::where('user_id', auth::id())->get();
         return OrderResource::collection($orders);
     }
 
@@ -38,13 +38,13 @@ class OrderController extends Controller
                 ]);
             }
 
-            return response($order);
+            return OrderResource::make($order);
         });
     }
 
     public function show(Order $order)
     {
-        return OrderResource::make($order);
+        return OrderResource::make($order->load('products'));
     }
 
 }

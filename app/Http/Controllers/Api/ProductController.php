@@ -19,7 +19,7 @@ class ProductController extends Controller
         ->when($request->query('category_id') , fn($q) => $q->where('category_id',$request->category_id))
         ->when($request->query('name') , fn($q) => $q->where('name','LIKE','%' . $request->name . '%'))
         ->orderBy('id','DESC')
-        ->paginate(10);
+        ->get();
         return ProductRescource::collection($products);
     }
 
