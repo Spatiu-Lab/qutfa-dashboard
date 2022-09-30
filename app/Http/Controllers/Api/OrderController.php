@@ -28,6 +28,7 @@ class OrderController extends Controller
                 'total'     => $request->total,
                 'address'   => $request->address,
                 'phone'     => $request->phone,
+                'status'    => Order::STATUS_WAITTING,
             ]);
 
             foreach ($request->quantity as $index => $quantity) {
