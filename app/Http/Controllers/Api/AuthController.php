@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,19 @@ class AuthController extends Controller
             return UserResource::make($user);
         });
 
+    }
+
+    public function profile(UpdateProfileRequest $request)
+    {
+        $data = $request->validated();
+
+        if($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        auth()->user()->update($data);
+
+        return UserResource::make(auth()->user());
     }
 
     public function logout() {

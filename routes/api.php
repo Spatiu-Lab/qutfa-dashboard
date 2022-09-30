@@ -23,6 +23,7 @@ Route::post('register',[AuthController::class,'register']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('logout',[AuthController::class,'logout']);
+    Route::put('profile',[AuthController::class,'profile']);
 
     Route::resource('products',ProductController::class)->only('index','show');
     Route::resource('categories',CategoryControlller::class)->only('index','show');
