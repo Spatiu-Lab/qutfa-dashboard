@@ -28,12 +28,13 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products =  Product::query()
-        ->where(fn($q) => $q->where('name','LIKE','%'.$request->q.'%'))
+        $products =  Product::filter()
         ->orderBy('id','DESC')
         ->paginate();
 
-        return view('admin.products.index',compact('products'));
+        $status = Product::STATUS;
+        $categories = Category::all();
+        return view('admin.products.index',compact('products','status', 'categories'));
     }
 
     /**
@@ -57,6 +58,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+
         return DB::transaction(function () use($request) {
              $product = Product::create($request->validated());
 
@@ -91,7 +93,7 @@ class ProductController extends Controller
                 }
             }
 
-            toastr()->success('تم إضافة القسم بنجاح','عملية ناجحة');
+            toastr()->success('تم إضافة المنتج بنجاح','عملية ناجحة');
             return redirect()->route('admin.products.index');
         });
     }
@@ -118,6 +120,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $units = Unit::all();
         $status = Product::STATUS;
+
         return view('admin.products.edit', compact('units', 'categories', 'product', 'status'));
     }
 
@@ -151,14 +154,16 @@ class ProductController extends Controller
             }
 
             if($request->has('units')){
+
                 foreach ($request->units as $index => $unit) {
-                    $product_unit = ProductUnit::find($request->product_unit_ids[$index]);
+                    $product_unit = ProductUnit::where('unit_id',$unit)->where('product_id',$product->id)->first();
                     if($product_unit) {
                         $product_unit->update([
                             'unit_id' => $unit,
                             'price' => $request->prices[$index]
                         ]);
-                    }else {
+                    }
+                    else {
                         $product->units()->create([
                             'unit_id' => $unit,
                             'price' => $request->prices[$index]
@@ -167,7 +172,7 @@ class ProductController extends Controller
                 }
             }
 
-            toastr()->success('تم إضافة القسم بنجاح','عملية ناجحة');
+            toastr()->success('تم تعديل المنتج بنجاح','عملية ناجحة');
             return redirect()->route('admin.products.index');
         });
     }

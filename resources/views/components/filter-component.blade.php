@@ -15,33 +15,16 @@
                     <input type="hidden" name="columns[{{ $key }}]" value="{{ $column }}">
                 @endforeach
                 <div class="row">
-                    @isset($clients)
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="form-group row">
-                                    <label for="users" class="col-sm-4 col-form-label">العميل</label>
-                                    <div class="col-sm-8">
-                                        <select style="width: 100%" name="client" class="custom-select">
-                                            <option value="all">الكل</option>
-                                            @foreach ($clients as $client)
-                                                <option value="{{ $client->id }}" {{ $client->id ==  request()->client ? 'selected' : '' }} >{{ $client->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endisset
-                    @isset($params['departments'])
+                    @isset($params['categories'])
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="form-group row">
                                     <label for="users" class="col-sm-4 col-form-label">القسم</label>
                                     <div class="col-sm-8">
-                                        <select style="width: 100%" name="department" class="custom-select">
+                                        <select style="width: 100%" name="category" class="custom-select">
                                             <option value="all">الكل</option>
-                                            @foreach ($params['departments'] as $department)
-                                                <option value="{{ $department->id }}" {{ $department->id ==  request()->department ? 'selected' : '' }} >{{ $department->name }}</option>
+                                            @foreach ($params['categories'] as $category)
+                                                <option value="{{ $category->id }}" {{ $category->id ==  request()->category ? 'selected' : '' }} >{{ $category->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -92,9 +75,8 @@
                             </div>
                         </div>
                     @endisset
-                    
                 </div>
-                
+
             </div>
         </div>
     </form>

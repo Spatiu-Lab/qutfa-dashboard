@@ -27,11 +27,12 @@ class FrontController extends Controller
         View::share('nav_categories', $this->nav_categories);
     }
 
-    
+
     public function index(Request $request)
     {
         $sliders = Slider::orderByDesc('created_at')->limit(4)->get();
         $categories = Category::limit(4)->get();
+        //dd($categories[0]->products->units);
         return view('front.index', compact('sliders', 'categories'));
     }
 
@@ -89,14 +90,14 @@ class FrontController extends Controller
 
         foreach ($request->quantity as $index => $quantity) {
             $order->products()->create([
-                'product_id'    => $request->product_id[$index],
-                'price'         => $request->price[$index],
-                'quantity'    => $quantity,
+                'product_unit_id'       => $request->product_id[$index],
+                'price'                 => $request->price[$index],
+                'quantity'              => $quantity,
             ]);
         }
 
         $users = User::where('power', 'ADMIN')->get();
-        
+
         Notification::send($users, new OrderNotification($order));
 
         event(new OrderEvent($order));
@@ -117,7 +118,7 @@ class FrontController extends Controller
         return view('front.pages.order', compact('order'));
     }
 
-    
+
     public function contact_post(Request $request)
     {
         $request->validate([

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Order;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -19,6 +20,7 @@ class OrderResource extends JsonResource
             'total'     => $this->total,
             'address'   => $this->address,
             'phone'     => $this->phone,
+            'status'    => Order::STATUS[$this->status],
             'products'  => $this->whenLoaded('products'),
         ];
     }

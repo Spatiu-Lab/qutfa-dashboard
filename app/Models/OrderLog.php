@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class OrderProduct extends Model
+class OrderLog extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    public $guarded=['id','created_at','updated_at'];
 
-    public function order() : BelongsTo
-    {
+    public function order() :BelongsTo {
         return $this->belongsTo(Order::class);
     }
 
-    public function product() : BelongsTo
-    {
-        return $this->belongsTo(ProductUnit::class, 'product_unit_id');
+    public function user() :BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }

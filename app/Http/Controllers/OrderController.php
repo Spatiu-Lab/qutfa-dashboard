@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderLog;
+use App\Jobs\CreateOrderLog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -16,7 +19,7 @@ class OrderController extends Controller
     {
         $orders = Order::filter()->with('user')->withCount('products')->paginate();
         $status = Order::STATUS;
-        return view('admin.orders.index',compact('orders', 'status'));
+        return view('admin.orders.index', compact('orders', 'status'));
     }
 
     /**
@@ -48,7 +51,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        return view('admin.orders.show',compact('order'));
+        $order->load('orderLogs.user:id,name,email');
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -87,6 +91,8 @@ class OrderController extends Controller
 
     public function updateStatus(Order $order)
     {
+        $previous_status = $order->status;
+
         switch ($order->status) {
             case Order::STATUS_WAITTING:
                 $order->update([
@@ -104,6 +110,13 @@ class OrderController extends Controller
                 ]);
                 break;
         }
+
+        OrderLog::create([
+            'user_id' => Auth::id(),
+            'order_id' => $order->id,
+            'previous_status' => $previous_status,
+            'current_status' => $order->status,
+        ]);
 
         return back();
     }

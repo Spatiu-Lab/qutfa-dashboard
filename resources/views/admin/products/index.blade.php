@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="filter my-3">
+        <div class="row">
+            <div class="col-md-12">
+                <x-filter-component :params="['categories' => $categories]" :status="$status"></x-filter-component>
+            </div>
+        </div>
+    </div>
     <div class="col-12 p-3">
         <div class="col-12 col-lg-12 p-0 main-box">
             <div class="col-12 px-0">
@@ -15,16 +22,12 @@
                                 <span class="btn btn-primary"><span class="fas fa-plus"></span> إضافة جديد</span>
                             </a>
                         @endcan
+                        <a href="{{ route('admin.products.print') }}?{{ request()->getQueryString() }}">
+                            <span class="btn btn-secondary"><span class="fas fa-print"></span> طباعة</span>
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 divider" style="min-height: 2px;"></div>
-            </div>
-            <div class="col-12 py-2 px-2 row">
-                <div class="col-12 col-lg-4 p-2">
-                    <form method="GET">
-                        <input type="text" name="q" class="form-control" placeholder="بحث ... ">
-                    </form>
-                </div>
             </div>
             <div class="col-12 p-3" style="overflow:auto">
                 <div class="col-12 p-0" style="min-width:1100px;">

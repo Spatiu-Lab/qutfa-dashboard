@@ -1,6 +1,6 @@
 <form method="POST" action="{{ route('logout') }}" id="logout-form" class="d-none">@csrf</form>
-<div class="col-12 d-flex">
-    <div style="width: 260px;background: #11233b;min-height: 100vh;position: fixed;z-index: 100" class="aside active">
+<div class="col-12 d-flex ">
+    <div style="width: 260px;background: #11233b;min-height: 100vh;position: fixed;z-index: 100" class="aside active no-print">
         <div class="col-12 px-0 d-flex" style="height: 55px;background: #1a2d4d">
             <div class="col-12 p-1" style="color: #fff">
                 <div class="col-12 p-0 row">
@@ -159,14 +159,14 @@
         </div>
     </div>
     <div class="main-content in-active" style="overflow: hidden;">
-        <div class="col-12 px-0 d-flex justify-content-between top-nav"
+        <div class="col-12 px-0 d-flex justify-content-between top-nav no-print"
             style="height: 55px;background: #fff;position: fixed;width: 100%;width: calc(100% - 260px);z-index: 1000;">
-            <div class="col-12 px-0 d-flex justify-content-center align-items-center btn  asideToggle"
+            <div class="col-12 px-0 d-flex no-print justify-content-center align-items-center btn  asideToggle"
                 style="width: 55px;height: 55px;">
                 <span class="fal fa-bars font-4"></span>
             </div>
-            <div class="col-12 px-0 d-flex justify-content-end  " style="height: 60px;">
-                <div class="btn-group" id="notificationDropdown">
+            <div class="col-12 px-0 d-flex justify-content-end no-print" style="height: 60px;">
+                <div class="btn-group no-print" id="notificationDropdown">
 
                     <div class="col-12 px-0 d-flex justify-content-center align-items-center btn  "
                         style="width: 55px;height: 55px;" data-bs-toggle="dropdown" aria-expanded="false"
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 px-0 d-flex justify-content-center align-items-center  dropdown"
+                <div class="col-12 px-0 d-flex justify-content-center align-items-center  dropdown no-print"
                     style="width: 55px;height: 55px;">
                     <div style="width: 55px;height: 55px;cursor: pointer;" data-bs-toggle="dropdown"
                         aria-expanded="false" class="d-flex justify-content-center align-items-center cursor-pointer">
@@ -247,13 +247,13 @@
 
                 </div>
 
-                <div class="dropdown" style="width: 55px;height: 55px;background: #2381c6">
+                <div class="dropdown no-print" style="width: 55px;height: 55px;background: #2381c6">
                     <span class="d-inline-block fal fa-user"></span>
                 </div>
 
             </div>
         </div>
-        <div class="col-12 px-0 py-2" style="margin-top: 60px;">
+        <div class="col-12 px-0 py-2 content" style="margin-top: 60px;">
             @yield('content')
         </div>
     </div>
