@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ProductUnit;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryResource extends JsonResource
@@ -14,14 +15,16 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
+        $products = ProductUnit::whereIn('product_id', $this->products->pluck('id'))->get();
+        
         return [
-            'id' => $this->id,
-            'image' => asset($this->image()),
-            'slug' => $this->slug,
-            'title' => $this->title,
-            'description' => $this->description,
-            'meta_description' => $this->meta_description,
-            'products' => ProductRescource::collection($this->whenLoaded('products')),
+            'id'        => $this->id,
+            'image'     => asset($this->image()),
+            'slug'      => $this->slug,
+            'title'     => $this->title,
+            'description'       => $this->description,
+            'meta_description'  => $this->meta_description,
+            'products'          => ProductRescource::collection($this->whenLoaded('products', $products)),
         ];
     }
 }

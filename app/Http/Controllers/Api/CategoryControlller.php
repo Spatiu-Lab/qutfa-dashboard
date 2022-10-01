@@ -15,13 +15,13 @@ class CategoryControlller extends Controller
     public function index(Request $request) {
         $categeories = Category::when($request->query('title'),fn($q) => $q->where('title','LIKE','%' . $request->query('title') . '%'))
         ->orderBy('id','DESC')
-        ->paginate(10);
+        ->get();
 
         return CategoryResource::collection($categeories);
     }
 
     public function show(Category $category) {
-       return CategoryResource::make($category->load('products'));
+        return CategoryResource::make($category->load('products'));
     }
 
 }
