@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Category;
+use App\Models\ProductUnit;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class CategoryControlller extends Controller
 {
@@ -17,11 +19,16 @@ class CategoryControlller extends Controller
         ->orderBy('id','DESC')
         ->get();
 
-        return CategoryResource::collection($categeories);
+        return response()->json($categeories);
+        //return CategoryResource::collection($categeories);
     }
 
     public function show(Category $category) {
-        return CategoryResource::make($category->load('products'));
+        $products = ProductUnit::with(['unit', 'product'])->whereIn('product_id', $category->products->pluck('id'))->get();
+        $category_products =  collect($category)->merge($products);
+
+        return response()->json($category_products);
+        //return CategoryResource::make($category->load('products'));
     }
 
 }

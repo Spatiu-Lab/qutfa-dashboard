@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     public function index() {
-        $orders = Order::where('user_id', auth::id())->get();
-        return OrderResource::collection($orders);
+        $orders = Order::with(['products', 'products.product', 'products.product.product', 'products.product.unit'])
+        ->where('user_id', auth::id())
+        ->get();
+        //return OrderResource::collection($orders);
+        return response()->json($orders);
     }
 
     public function store(StoreOrderRequest $request)
@@ -33,19 +36,22 @@ class OrderController extends Controller
 
             foreach ($request->quantity as $index => $quantity) {
                 $order->products()->create([
-                    'product_id'    => $request->product_id[$index],
-                    'price'         => $request->price[$index],
-                    'quantity'    => $quantity,
+                    'product_unit_id'       => $request->product_id[$index],
+                    'price'                 => $request->price[$index],
+                    'quantity'              => $quantity,
                 ]);
             }
 
-            return OrderResource::make($order);
+            // return OrderResource::make($order);
+            return response()->json($order);
         });
     }
 
-    public function show(Order $order)
+    public function show($order)
     {
-        return OrderResource::make($order->load('products'));
+        $order = Order::with(['products', 'products.product', 'products.product.product', 'products.product.unit'])->findOrFail($order);
+        return response()->json($order);
+        //return OrderResource::make($order->load('products'));
     }
 
 }
