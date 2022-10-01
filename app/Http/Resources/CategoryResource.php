@@ -16,6 +16,7 @@ class CategoryResource extends JsonResource
     public function toArray($request)
     {
         $products = ProductUnit::whereIn('product_id', $this->products->pluck('id'))->get();
+        
         return [
             'id'        => $this->id,
             'image'     => asset($this->image()),
