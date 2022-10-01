@@ -16,14 +16,17 @@ class ProductController extends Controller
      */
     public function index(Request $request) {
         $products =  ProductUnit::query()
+        ->with(['product', 'unit'])
         ->when($request->query('category_id') , fn($q) => $q->where('category_id',$request->category_id))
         ->when($request->query('name') , fn($q) => $q->where('name','LIKE','%' . $request->name . '%'))
         ->orderBy('id','DESC')
         ->get();
-        return ProductRescource::collection($products);
+        return response()->json($products);
     }
 
-    public function show(ProductUnit $product) {
-        return ProductRescource::make($product);
+    public function show($product) {
+        $product = ProductUnit::with(['product', 'unit'])->findOrFail($product);
+        // ProductRescource::make($product)
+        return response()->json($product);
     }
 }
