@@ -15,7 +15,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::orderByDesc('created_at')
+        $customers = Customer::whereHas('user')->orderByDesc('created_at')
         ->paginate();
         return view('admin.customers.index', compact('customers'));
     }
