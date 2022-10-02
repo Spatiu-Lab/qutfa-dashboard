@@ -21,4 +21,9 @@ class Customer extends Model
     {
         return $this->hasOne(User::class, 'customer_id');
     }
+
+    public function orders()
+    {
+        return $this->user->orders;
+    }
 }

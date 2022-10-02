@@ -15,7 +15,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::orderByDesc('created_at')
+        ->paginate();
+        return view('admin.customers.index', compact('customers'));
     }
 
     /**
@@ -81,6 +83,14 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $status = $customer->user->blocked == 1 ? 0 : 1;
+
+        $customer->user->update([
+            'blocked' => $status
+        ]);
+
+        toastr()->success('تمت العملية بنجاح','عملية ناجحة');
+        
+        return redirect()->route('admin.customers.index');
     }
 }

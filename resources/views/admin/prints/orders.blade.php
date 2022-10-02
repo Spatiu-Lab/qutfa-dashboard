@@ -22,8 +22,8 @@
             </div>
         </div>
     </div>
-    <div class="col-12 p-3" style="overflow:auto">
-        <div class="col-12 p-0" style="min-width:1100px;">
+    <div class="col-12 p-3" >
+        <div class="col-12 p-0" >
             <table class="table table-bordered  table-hover text-center">
                 <thead>
                     <tr>

@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::filter()->with('user')->withCount('products')->paginate();
+        $orders = Order::filter()->with('user')->withCount('products')->orderByDesc('created_at')->paginate();
         $status = Order::STATUS;
         return view('admin.orders.index', compact('orders', 'status'));
     }
