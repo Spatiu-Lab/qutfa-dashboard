@@ -133,7 +133,7 @@
                 @endcan
 
 
-                @can('viewAny', \App\Models\Setting::class)
+                {{-- @can('viewAny', \App\Models\Setting::class)
                     <a href="{{ route('admin.settings.index') }}" class="col-12 px-0">
                         <div class="col-12 item px-0 d-flex ">
                             <div style="width: 50px" class="px-3 text-center">
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                     </a>
-                @endcan
+                @endcan --}}
                 <a href="#" class="col-12 px-0" onclick="document.getElementById('logout-form').submit();">
                     <div class="col-12 item px-0 d-flex ">
                         <div style="width: 50px" class="px-3 text-center">
