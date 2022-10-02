@@ -27,6 +27,8 @@ use App\Http\Controllers\TrafficsController;
 use App\Http\Controllers\RedirectionController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ContactReplyController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\OrderController;
@@ -83,6 +85,10 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
             Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
         });
 
+        //users routes
+        Route::resource('users',UserController::class);
+        Route::resource('customers',CustomerController::class);
+
         // units routes
         Route::resource('units',UnitController::class);
         Route::resource('sliders',  SliderController::class);
@@ -101,6 +107,11 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
         Route::get('orders/print/{order}',[PrintController::class,'order'])->name('orders.print.order');
         Route::get('print/products',[PrintController::class,'products'])->name('products.print');
         Route::get('print/orders',[PrintController::class,'orders'])->name('orders.print');
+        Route::get('print/customers',[PrintController::class,'customers'])->name('customers.print');
+
+        // exports routes
+        Route::get('exports/orders',[ExportController::class, 'orders'])->name('orders.exports');
+        Route::get('exports/products',[ExportController::class, 'products'])->name('products.exports');
 
     });
 

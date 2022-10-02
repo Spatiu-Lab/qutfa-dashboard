@@ -25,6 +25,9 @@
                         <a href="{{ route('admin.products.print') }}?{{ request()->getQueryString() }}">
                             <span class="btn btn-secondary"><span class="fas fa-print"></span> طباعة</span>
                         </a>
+                        <a target="_blanck" href="{{ route('admin.products.exports') }}?{{ request()->getQueryString() }}">
+                            <span class="btn btn-success"><span class="fas fa-file-excel"></span> تصدير اكسل</span>
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 divider" style="min-height: 2px;"></div>
