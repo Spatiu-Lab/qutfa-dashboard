@@ -34,6 +34,10 @@ class OrderController extends Controller
                 'status'    => Order::STATUS_WAITTING,
             ]);
 
+            $request['product_id']  = json_decode($request->product_id);
+            $request['quantity']    = json_decode($request->quantity);
+            $request['price']       = json_decode($request->price);
+
             foreach ($request->quantity as $index => $quantity) {
                 $order->products()->create([
                     'product_unit_id'       => $request->product_id[$index],
