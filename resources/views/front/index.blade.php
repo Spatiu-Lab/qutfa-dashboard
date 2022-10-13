@@ -108,12 +108,12 @@
 										<a href="{{ url('/product') . '/'. $product->units->first()->id }}"><img src="{{ asset($product->image()) }}" alt=""></a>
 									</div>
 									<h3>{{ $product->name }}</h3>
-									<p class="product-price"><span>{{ $product->units->first()->name }}</span> {{ $product->units->first()->price }} </p>
+									<p class="product-price"><span>{{ $product->units->first()->unit->name }}</span> {{ $product->units->first()->price }} </p>
 									<button 
 										type="button" 
 										data-id="{{ $product->units->first()->id }}"
 										data-name="{{ $product->name }}"
-										data-unit="{{ $product->units->first()->name }}"
+										data-unit="{{ $product->units->first()->unit->name }}"
 										data-price="{{ $product->units->first()->price }}"
 										class="cart-btn"
 										>
