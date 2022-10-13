@@ -42,7 +42,7 @@
                                             <p><input type="tel" placeholder="Phone"></p> --}}
                                             <p><input type="number" name="phone"  placeholder="رقم الهاتف"></p>
                                             <p><textarea name="address" id="bill" cols="30" rows="10" placeholder="العنوان"></textarea></p>
-                                            <button type="submit" class="boxed-btn">ارسال الطلب</button>
+                                            <button id="btn-submit" type="submit" class="boxed-btn">ارسال الطلب</button>
                                         </form>
                                     </div>
                                     </div>
@@ -146,13 +146,22 @@
                     `
                     $("#products_form").append(product)
                 });
+
+                var total = `
+                    <input type="hidden" name="total" value="${cartLS.total()}">
+                `
+                $("#products_form").append(total);
             }
 
-            var total = `
-                <input type="hidden" name="total" value="${cartLS.total()}">
-            `
-            $("#products_form").append(total)
+
             
-            renderCart(cartLS.list())
+
+            $('#btn-submit').on('click',function (e) {
+                e.preventDefault()
+                renderCart(cartLS.list())
+                cartLS.destroy()
+                $('#products_form').submit()
+            })
+            
         </script>
 @endpush    
