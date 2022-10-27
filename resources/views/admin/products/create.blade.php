@@ -120,7 +120,7 @@
 												السعر
 											</div>
 											<div class="col-12 pt-3">
-												<input type="number" name="prices[]" step="0.1" class="form-control" required>
+												<input type="number" required name="prices[]" step="0.1" class="form-control" >
 											</div>
 										</div>
 									</div>
@@ -181,7 +181,7 @@
 							السعر
 						</div>
 						<div class="col-12 pt-3">
-							<input type="number" name="prices[]" step="0.1" class="form-control">
+							<input type="number" name="prices[]" step="0.1" class="form-control" required>
 						</div>
 					</div>
 					<div class="col-12 col-lg-2 p-2">

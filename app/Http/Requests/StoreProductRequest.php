@@ -26,11 +26,12 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:100'],
-            'status.*' => ['required', 'string', Rule::in(Product::STATUS)],
-            'description' => ['required', 'string'],
-            'category_id' => ['required', 'integer', 'exists:categories,id'],
-            'image' => ['required', 'image','mimes:png,jpg'],
+            'name'          => ['required', 'max:100'],
+            'status.*'      => ['required', 'string', Rule::in(Product::STATUS)],
+            'description'   => ['required', 'string'],
+            'category_id'   => ['required', 'integer', 'exists:categories,id'],
+            'image'         => ['required', 'image','mimes:png,jpg'],
+            'prices'        => ['required', 'array']
         ];
     }
 }
