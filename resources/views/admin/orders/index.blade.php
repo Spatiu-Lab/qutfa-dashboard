@@ -44,9 +44,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $order)
+                            @foreach ($orders as $index => $order)
                                 <tr>
-                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ $order->user->name }}</td>
                                     <td>{{ $order->products->count() }}</td>
                                     <td>{{ $order->total }}</td>
