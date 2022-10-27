@@ -35,7 +35,7 @@
                                         الصورة
                                     </div>
                                     <div class="col-12 pt-3">
-                                        <input type="file" name="image" class="form-control" accept="image/*">
+                                        <input type="file" name="image" class="form-control" accept="image/*" required>
                                     </div>
                                     <div class="col-12 pt-3">
 
@@ -88,7 +88,7 @@
                                         الوصف
                                     </div>
                                     <div class="col-12 pt-3">
-                                        <textarea name="description" class="editor with-file-explorer">{{ old('description') }}</textarea>
+                                        <textarea name="description" class="editor with-file-explorer" required>{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
 												السعر
 											</div>
 											<div class="col-12 pt-3">
-												<input type="number" name="prices[]" step="0.1" class="form-control">
+												<input type="number" name="prices[]" step="0.1" class="form-control" required>
 											</div>
 										</div>
 									</div>
