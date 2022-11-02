@@ -13,26 +13,27 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PrintController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HelperController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MenuLinkController;
 use App\Http\Controllers\TrafficsController;
 use App\Http\Controllers\RedirectionController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ContactReplyController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\NotificationsController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PrintController;
 
 Auth::routes();
 
@@ -43,11 +44,17 @@ Route::get('/product/{slug}', [FrontController::class, 'product'])->name('produc
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('/cart', [FrontController::class, 'cart'])->name('cart');
 
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/checkout', [FrontController::class, 'checkout'])->name('checkout');
     Route::post('/orders', [FrontController::class, 'storeOrder'])->name('orders.store');
     Route::get('/orders', [FrontController::class, 'orders'])->name('orders.index');
     Route::get('/orders/{order}', [FrontController::class, 'showOrder'])->name('orders.show');
+
+    Route::post('/payment', [PaymentController::class, 'prepareCheckout'])->name('payment');
+    Route::get('finalize', [PaymentController::class, 'finalize'])->name('finalize');
+
 });
 
 Route::get('lang/{locale}', [LocalizationController::class, 'index']);

@@ -26,6 +26,7 @@
 									<tr class="table-head-row">
 										<th>تاريخ الطلب</th>
 										<th>الحالة</th>
+										<th>حالة الدفع</th>
 										<th>عدد المنتجات</th>
 										<th>اجمالى الطلب</th>
 									</tr>
@@ -34,6 +35,7 @@
                                     <tr>
                                         <td>{{ $order->created_at->format('Y-m-d') }}</td>
                                         <td>@lang('status.' . $order->status)</td>
+                                        <td>{{ $order->payment_status ?? '-' }}</td>
                                         <td>{{ $order->products->count() }}</td>
                                         <td>{{ $order->total }}</td>
                                     </tr>

@@ -1,4 +1,34 @@
 @extends('layouts.app',['title'=>"اكمال الطلب"])
+
+@push('styles')
+    <style>
+        .order-details {
+            width: 100%;
+        }
+
+        .radio {
+			box-shadow: 1px 14px 10px #eee;
+			text-align: center;
+			padding: 30px 0;
+			border-radius: 10px;
+		}
+
+		.radio p {
+			padding: 0;
+			margin: 3.5px 0;
+			color: #223469
+		}
+		.radio.selected {
+			box-shadow: 0px 0px 0px 1px rgba(0, 0, 155, 0.4);
+			border: 2px solid #bf1c2e
+		}
+		.label-radio {
+			font-weight:bold;
+			color: #bf1c2e
+		}
+    </style>
+@endpush
+
 @section('content')
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
@@ -25,46 +55,81 @@
                                 <div class="card single-accordion">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        العنوان
+                                    <button class="btn btn-link text-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        بيانات الفوترة
                                     </button>
                                     </h5>
                                 </div>
-
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                    <div class="billing-address-form">
-                                        <form id="products_form" action="{{ route('orders.store') }}" method="post">
-                                            @csrf
-                                            {{-- <p><input type="text" placeholder="Name"></p>
-                                            <p><input type="email" placeholder="Email"></p>
-                                            <p><input type="text" placeholder="Address"></p>
-                                            <p><input type="tel" placeholder="Phone"></p> --}}
-                                            <p><input type="number" name="phone"  placeholder="رقم الهاتف"></p>
-                                            <p><textarea name="address" id="bill" cols="30" rows="10" placeholder="العنوان"></textarea></p>
-                                            <button id="btn-submit" type="submit" class="boxed-btn">ارسال الطلب</button>
-                                        </form>
+                                <form id="products_form" action="{{ route('payment') }}" method="post">
+                                    @csrf
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="billing-address-form">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class=" m-auto">
+                                                            <div class="form-group">
+                                                                <input maxlength="200" type="text" autocomplete="off" required="required" name="city" class="form-control" placeholder="المدينة">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="phone"  placeholder="رقم الهاتف" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="text"  name="street1" id="bill" class="form-control" placeholder="العنوان">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="card single-accordion">
+                                        <div class="card-header" id="headingTwo">
+                                            <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed text-right" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                طريقة الدفع
+                                            </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <div class="shipping-address-form">
+                                                    <div class="row justify-content-center mb-4 radio-group ">
+                                                        <input type="hidden" id="input-method" name="method" value="MADA">
+                                                        <div class="col-sm-3 col-md-3 col-xs-6 col" style="padding: 2% 10px">
+                                                            <div class='radio mx-auto selected' data-value="MADA">
+                                                                <img class="fit-image" src="{{ asset('mada.jpeg')	}}" width="105px" height="55px"> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 col-md-3 col-xs-6 col" style="padding: 2% 10px">
+                                                            <div class='radio mx-auto' data-value="VISA MASTER">
+                                                                <img class="fit-image" src="{{ asset('visa.png')	}}" width="105px" height="55px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 col-md-3 col-xs-6 col " style="padding: 2% 10px">
+                                                            <div class='radio mx-auto ' data-value="VISA MASTER">
+                                                                <img class="fit-image" src="{{ asset('master.png')	}}" width="105px" height="55px"> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3 col-md-3 col-xs-6 col " style="padding: 2% 10px">
+                                                            <div class='radio mx-auto text-center  offline' data-value="offline">
+                                                                <i class="fa fa-truck" width="105px" height="55px"></i>
+                                                                <p>دفع عند الاستلام</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button id="btn-submit" type="submit" class="boxed-btn">ارسال الطلب</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                </form>
                                 </div>
-                                </div>
-                                <!-- <div class="card single-accordion">
-                                <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Shipping Address
-                                    </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                    <div class="shipping-address-form">
-                                        <p>Your shipping address form is here.</p>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="card single-accordion">
+                                {{-- <div class="card single-accordion">
                                 <div class="card-header" id="headingThree">
                                     <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -79,56 +144,39 @@
                                     </div>
                                     </div>
                                 </div>
-                                </div> -->
+                                </div>  --}}
                             </div>
 
                         </div>
                     </div>
                     
-                    {{-- <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="order-details-wrap">
-                            <table class="order-details">
-                                <thead>
+                            <table class="table order-details">
+                                <tbody class="order-details-body text-right">
                                     <tr>
-                                        <th>الطلب</th>
-                                        <th>السعر</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="order-details-body">
-                                    <tr>
-                                        <td>Product</td>
-                                        <td>Total</td>
+                                        <th colspan="2" class="text-center">محتويات السلة</th>
                                     </tr>
                                     <tr>
-                                        <td>Strawberry</td>
-                                        <td>$85.00</td>
+                                        <th>المنتجات</th>
+                                        <td class="text-center products"></td>
                                     </tr>
                                     <tr>
-                                        <td>Berry</td>
-                                        <td>$70.00</td>
+                                        <th>القيمة</th>
+                                        <td class="text-center amount"></td>
                                     </tr>
                                     <tr>
-                                        <td>Lemon</td>
-                                        <td>$35.00</td>
+                                        <th>الضريبة</th>
+                                        <td class="text-center tax"></td>
                                     </tr>
-                                </tbody>
-                                <tbody class="checkout-details">
-                                    <tr>
-                                        <td>Subtotal</td>
-                                        <td>$190</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping</td>
-                                        <td>$50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td>$240</td>
+                                    <tr class=" active">
+                                        <th>الاجمالى</th>
+                                        <td class="text-center total"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,6 +202,21 @@
             }
 
 
+            $(function () {
+                $('.products').text(cartLS.list().length )
+                $('.amount').text(cartLS.total() + "  ريال")
+                $('.tax').text((cartLS.total() * 15/100) + "  ريال" )
+                $('.total').text(cartLS.total() + (cartLS.total() * 15/100) + "  ريال")
+            })
+
+            // Radio button
+			$(document).on('click', '.radio-group .radio',function(){
+
+                $('#input-method').val($(this).data('value'))
+                $(this).parent().parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+                $('#payment_delivery').removeAttr('checked')
+            })
             
 
             $('#btn-submit').on('click',function (e) {

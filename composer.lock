@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9b3968faec711f9b250ad5232db4932",
+    "content-hash": "8b4017325e2436564c51b16f4afe7a04",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -395,6 +395,67 @@
                 }
             ],
             "time": "2022-09-10T07:44:30+00:00"
+        },
+        {
+            "name": "devinweb/laravel-hyperpay",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devinweb/laravel-hyperpay.git",
+                "reference": "2f5d11219d51a8a856e48d3e76c27ada35a6b2d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devinweb/laravel-hyperpay/zipball/2f5d11219d51a8a856e48d3e76c27ada35a6b2d2",
+                "reference": "2f5d11219d51a8a856e48d3e76c27ada35a6b2d2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Devinweb\\LaravelHyperpay\\LaravelHyperpayServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelHyperpay": "Devinweb\\LaravelHyperpay\\Facades\\LaravelHyperpay"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Devinweb\\LaravelHyperpay\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "darbaoui imad",
+                    "email": "imad@devinweb.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel package for Hyperpay payment gateway in MENA.",
+            "homepage": "https://github.com/devinweb/laravel-hyperpay",
+            "keywords": [
+                "devinweb",
+                "laravel-hyperpay"
+            ],
+            "support": {
+                "issues": "https://github.com/devinweb/laravel-hyperpay/issues",
+                "source": "https://github.com/devinweb/laravel-hyperpay/tree/v1.2.1"
+            },
+            "time": "2022-10-10T20:53:21+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
