@@ -39,8 +39,8 @@ class PaymentController extends Controller
 
 
         if($request->method == 'offline') {
-            $this->createOrder($trackable);
-            return view('front.pages.finalize');
+            $order = $this->createOrder($trackable);
+            return redirect()->route('orders.show', $order->id);
         }
 
         $user = auth()->user();

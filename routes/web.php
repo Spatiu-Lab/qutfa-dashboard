@@ -31,6 +31,7 @@ use App\Http\Controllers\MenuLinkController;
 use App\Http\Controllers\TrafficsController;
 use App\Http\Controllers\RedirectionController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\CategoryDiscountController;
 use App\Http\Controllers\ContactReplyController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\NotificationsController;
@@ -108,6 +109,8 @@ Route::prefix('admin')->middleware(['auth','ActiveAccount'])->name('admin.')->gr
         Route::resource('orders',OrderController::class);
         Route::put('orders/status/{order}',[OrderController::class, 'updateStatus'])->name('orders.status');
 
+        // discounts 
+        Route::resource('discounts',CategoryDiscountController::class);
 
 
         // Print routes

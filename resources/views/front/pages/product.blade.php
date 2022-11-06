@@ -41,7 +41,11 @@
 					<div class="col-md-7">
 						<div class="single-product-content">
 							<h3>{{ $product->product->name }}</h3>
-							<p class="single-product-pricing"><span>{{ $product->unit->name }}</span> {{ $product->price }}</p>
+							<p class="single-product-pricing">
+								<span>{{ $product->unit->name }}</span> 
+								<span class="discount {{  $product->discount_amount > 0 ? '' : 'd-none' }} ">{{  $product->price +  $product->discount_amount }}  ريال</span>
+								{{ $product->price }} ريال
+							</p>
 							<p>
 								{!! $product->product->description !!}
 							</p>
