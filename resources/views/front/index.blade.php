@@ -108,7 +108,11 @@
 										<a href="{{ url('/product') . '/'. $product->units->first()->id }}"><img src="{{ asset($product->image()) }}" alt=""></a>
 									</div>
 									<h3>{{ $product->name }}</h3>
-									<p class="product-price"><span>{{ $product->units->first()->unit->name }}</span> {{ $product->units->first()->price }} </p>
+									<p class="product-price">
+										<span>{{ $product->units->first()->unit->name }}</span> 
+										<span class="discount {{ $product->units->first()->discount_amount > 0 ? '' : 'd-none' }} ">{{ $product->units->first()->price + $product->units->first()->discount_amount }} ريال</span>
+										{{ $product->units->first()->price }} ريال
+									</p>
 									<button 
 										type="button" 
 										data-id="{{ $product->units->first()->id }}"

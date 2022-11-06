@@ -25,6 +25,7 @@
         "psr/simple-cache": "^2.0",
         "pusher/pusher-php-server": "^7.0",
         "spatie/laravel-translatable": "^6.0",
+        "prgayman/laravel-zatca": "^1.0",
         "stevebauman/location": "^6.2",
         "yoeunes/toastr": "^2.0"
     },

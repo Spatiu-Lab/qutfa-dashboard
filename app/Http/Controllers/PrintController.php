@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Prgayman\Zatca\Facades\Zatca;
 
 class PrintController extends Controller
 {
@@ -17,7 +18,13 @@ class PrintController extends Controller
 
     public function order(Order $order)
     {
-        return view('admin.prints.order', compact('order'));
+        $qrcode_base64 = Zatca::sellerName('مؤسسة قطفة زهراء التجارية')
+        ->vatRegistrationNumber("294944634745100")
+        ->timestamp($order->created_at->format('Y-m-d H:i'))
+        ->totalWithVat($order->total)  
+        ->vatTotal($order->tax)
+        ->toBase64();
+        return view('admin.prints.order', compact('order', 'qrcode_base64'));
     }
 
     public function products(Request $request)

@@ -47,4 +47,9 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function discount()
+    {
+        return $this->hasOne(CategoryDiscount::class, 'category_id');
+    }
 }

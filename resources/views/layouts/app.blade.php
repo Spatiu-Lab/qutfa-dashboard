@@ -33,6 +33,13 @@
 	<!-- rtl -->
 	<link rel="stylesheet" href="{{ asset('front/assets/css/rtl.css') }}">
 	@stack('styles')
+
+	<style>
+		.discount {
+			font-size: 14px;
+			text-decoration-line: line-through;
+		}
+	</style>
 </head>
 <body>
 	

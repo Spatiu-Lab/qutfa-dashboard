@@ -68,6 +68,18 @@
                         </div>
                     </a>
                 @endcan
+                @can('viewAny', \App\Models\CategoryDiscount::class)
+                    <a href="{{ route('admin.discounts.index') }}" class="col-12 px-0">
+                        <div class="col-12 item px-0 d-flex ">
+                            <div style="width: 50px" class="px-3 text-center">
+                                <span class="fal fa-tag font-2"> </span>
+                            </div>
+                            <div style="width: calc(100% - 50px)" class="px-2">
+                                التخفيضات
+                            </div>
+                        </div>
+                    </a>
+                @endcan
                 @can('viewAny', \App\Models\Unit::class)
                     <a href="{{ route('admin.units.index') }}" class="col-12 px-0">
                         <div class="col-12 item px-0 d-flex ">

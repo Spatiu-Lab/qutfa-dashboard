@@ -26,6 +26,13 @@
 			font-weight:bold;
 			color: #bf1c2e
 		}
+
+        .hint {
+            text-align: right !important;
+            font-size: 14px;
+            font-weight: bold;
+
+        }
     </style>
 @endpush
 
@@ -122,6 +129,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="text-right">
+                                                        <ul>
+                                                            <li class="hint d-none"><p>سيتم اضافة 10 ريال رسوم تحصيل</p></li>
+                                                        </ul>
+                                                    </div>
                                                     <button id="btn-submit" type="submit" class="boxed-btn">ارسال الطلب</button>
                                                 </div>
                                             </div>
@@ -162,7 +174,7 @@
                                         <td class="text-center products"></td>
                                     </tr>
                                     <tr>
-                                        <th>القيمة</th>
+                                        <th>اجمالى السلة</th>
                                         <td class="text-center amount"></td>
                                     </tr>
                                     <tr>
@@ -204,18 +216,23 @@
 
             $(function () {
                 $('.products').text(cartLS.list().length )
-                $('.amount').text(cartLS.total() + "  ريال")
+                $('.amount').text(cartLS.total() - ((cartLS.total() * 15/100)) + "  ريال")
                 $('.tax').text((cartLS.total() * 15/100) + "  ريال" )
-                $('.total').text(cartLS.total() + (cartLS.total() * 15/100) + "  ريال")
+                $('.total').text(cartLS.total() + "  ريال")
             })
 
             // Radio button
 			$(document).on('click', '.radio-group .radio',function(){
-
                 $('#input-method').val($(this).data('value'))
                 $(this).parent().parent().find('.radio').removeClass('selected');
                 $(this).addClass('selected');
                 $('#payment_delivery').removeAttr('checked')
+
+                if($(this).data('value') == "offline") {
+                    $('.hint').removeClass('d-none')
+                }else {
+                    $('.hint').addClass('d-none')
+                }
             })
             
 

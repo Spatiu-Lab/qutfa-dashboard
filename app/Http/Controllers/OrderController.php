@@ -106,7 +106,8 @@ class OrderController extends Controller
                 break;
             case Order::STATUS_DELIVERY:
                 $order->update([
-                    'status' => Order::STATUS_DELIVERED
+                    'status'            => Order::STATUS_DELIVERED,
+                    'payment_status'    => 'success'
                 ]);
                 break;
         }
