@@ -29,109 +29,9 @@ $flat_colors = collect([
         </div>
     </div> --}}
     <div class="col-12 row p-0 d-flex">
-        <div class="col-12 col-lg-4 p-2">
-            
-            <div class="col-12 p-0 main-box">
-                <div class="col-12 px-0">
-                    <div class="col-12 px-3 py-3">
-                        إجرائات سريعة
-                    </div>
-                    <div class="col-12 " style="min-height: 1px;background: #f1f1f1;"></div>
-                </div>
-                <div class="col-12 p-3 row d-flex">
-                    <div class="col-4  d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="{{route('home')}}" target="_blank" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                <img src="/images/icons/house.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-home font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    الموقع
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @can('viewAny',\App\Models\Setting::class)
-                    <div class="col-4 d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="{{route('admin.settings.index')}}" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                <img src="/images/icons/settings.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-wrench font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    الإعدادات
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @endcan
-                    <div class="col-4 d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="{{route('admin.profile.index')}}" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                <img src="/images/icons/man.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-user font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    ملفي
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="{{route('admin.profile.index')}}" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                <img src="/images/icons/edit.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-user-edit font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    تعديل ملفي
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="{{route('admin.notifications.index')}}" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                
-                                <img src="/images/icons/notification.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-bells font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    الإشعارات
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @can('viewAny',\App\Models\Announcement::class)
-                    <div class="col-4 d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="{{route('admin.announcements.index')}}" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                
-                                <img src="/images/icons/annonce.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-bullhorn font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    الإعلانات
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    @endcan
-                    <div class="col-4 d-flex justify-content-center align-items-center mb-3 py-2">
-                        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();" style="color:inherit;">
-                            <div class="col-12 p-0 text-center">
-                                
-                                <img src="/images/icons/logout.png" style="width:30px;height: 30px">
-                                {{-- <span class="fal fa-sign-out-alt font-5" ></span> --}}
-                                <div class="col-12 p-0 text-center" >
-                                    خروج
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
         @can('show-statistics')
 
-
-        <div class="col-12 col-lg-4 p-2">
+        <div class="col-12 col-lg-6 p-2">
             <div class="col-12 p-0 main-box">
                 <div class="col-12 px-0">
                     <div class="col-12 px-3 py-3">
@@ -163,7 +63,7 @@ $flat_colors = collect([
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4 p-2">
+        <div class="col-12 col-lg-6 p-2">
             <div class="col-12 p-0 main-box">
                 <div class="col-12 px-0">
                     <div class="col-12 px-3 py-3">

@@ -2,6 +2,10 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/print.css') }}">
+
+    <style>
+        
+    </style>
 @endpush
 
 @section('content')
@@ -21,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-print-4 print-area">
-                    {{-- <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $order->project->name }}" width="90" /> --}}
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $qrcode_base64 }}" width="90" />
                 </div>
             </div>
         </div>

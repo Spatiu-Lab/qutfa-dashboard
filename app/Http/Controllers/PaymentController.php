@@ -34,11 +34,13 @@ class PaymentController extends Controller
             'address'        => $request->street1,
             'product_id'     => $request->product_id,
             'quantity'       => $request->quantity,
-            'total'          => $total + $tax,
+            'tax'            => $tax,
+            'total'          => $total,
         ];
 
 
         if($request->method == 'offline') {
+            $trackable['total'] = $total + 10;
             $order = $this->createOrder($trackable);
             return redirect()->route('orders.show', $order->id);
         }
@@ -84,6 +86,7 @@ class PaymentController extends Controller
             'total'     => $transaction['total'],
             'address'   => $transaction['address'],
             'phone'     => $transaction['phone'],
+            'tax'       => $transaction['tax'],
             'payment_id'         =>  $payment_id,
             'payment_status'     =>  $payment_status,
         ]);

@@ -87,6 +87,10 @@
                                 <th>الحالة</th>
                                 <td>@lang('status.' . $order->status)</td>
                             </tr>
+                            <tr>
+                                <th>حالة الدفع</th>
+                                <td>@lang('status.' . $order->payment_status)</td>
+                            </tr>
                         </thead>
                     </table>
                 </div>
