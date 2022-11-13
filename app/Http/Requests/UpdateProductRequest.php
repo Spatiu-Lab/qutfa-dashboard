@@ -34,6 +34,7 @@ class UpdateProductRequest extends FormRequest
             'product_unit_ids' => ['sometimes', 'array'],
             'units' => ['sometimes', 'array'],
             'prices' => ['sometimes', 'array'],
+            'discount' => ['sometimes', 'array'],
         ];
     }
 }

@@ -16,7 +16,24 @@
     <!-- end breadcrumb section -->
 
     <div class="container">
-		<div class="cart-section mt-100">
+        <div class="my-4">
+            <div class="row text-center">
+                <div class="col-md-4 col-print-4 print-area  text-center">
+                    <img style="width: 25%" src="{{ asset('front/assets/img/logo12.png') }}" alt="">
+                    <h3>قطفة</h3>
+                    <p>052145214 - الرياض</p>
+                </div>
+                <div class="col-md-4 col-print-4 print-area">
+                    <div class="py-4">
+                        <p>QATFA-{{ $order->id }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-print-4 print-area">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data={{ $qrcode_base64 }}" width="90" />
+                </div>
+            </div>
+        </div>
+		<div class="cart-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 col-md-12">

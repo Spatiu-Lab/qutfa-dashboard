@@ -26,7 +26,7 @@ class ProductUnit extends Model
     public function getDiscountAttribute()
     {
         $discount = $this->product->category->discount;
-        $discount_percentage = $discount ? $discount->discount : 0;
+        $discount_percentage = $discount ? $discount->discount : $this->discount_percentage;
         return $discount_percentage;
     }
 

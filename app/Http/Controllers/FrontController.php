@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Events\OrderEvent;
 use App\Models\ProductUnit;
 use Illuminate\Http\Request;
+use Prgayman\Zatca\Facades\Zatca;
 use Illuminate\Support\Facades\View;
 use App\Notifications\OrderNotification;
 use Illuminate\Support\Facades\Notification;
@@ -115,7 +116,14 @@ class FrontController extends Controller
 
     public function showOrder(Order $order)
     {
-        return view('front.pages.order', compact('order'));
+        $qrcode_base64 = Zatca::sellerName('مؤسسة قطفة زهراء التجارية')
+        ->vatRegistrationNumber("302227276900003")
+        ->timestamp($order->created_at->format('Y-m-d H:i'))
+        ->totalWithVat($order->total)  
+        ->vatTotal($order->tax)
+        ->toBase64();
+        
+        return view('front.pages.order', compact('order', 'qrcode_base64'));
     }
 
 

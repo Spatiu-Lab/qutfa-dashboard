@@ -9,7 +9,7 @@
 		@method("PUT")
 
 		<div class="row">
-			<div class="col-12 col-lg-8 p-0 main-box">
+			<div class="col-12 col-lg-6 p-0 main-box">
 				<div class="col-12 px-0">
 					<div class="col-12 px-3 py-3">
 						<span class="fas fa-info-circle"></span> إضافة جديد
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-lg-4">
+			<div class="col-12 col-lg-6">
 				<div class="col-12 col-lg-12 main-box">
 					<div class="col-12 px-0">
 						<div class="col-12 px-3 py-3">
@@ -100,7 +100,7 @@
 							@foreach ($product->units as $product_unit)
 								<input type="hidden" name="product_unit_ids[]" value="{{ $product_unit->id }}">
 								<div class="unit row">
-									<div class="col-12 col-lg-5 p-2">
+									<div class="col-12 col-lg-4 p-2">
 										<div class="col-12">
 											الوحدة
 										</div>
@@ -112,12 +112,20 @@
 											</select>
 										</div>
 									</div>
-									<div class="col-12 col-lg-5 p-2">
+									<div class="col-12 col-lg-4 p-2">
 										<div class="col-12">
 											السعر
 										</div>
 										<div class="col-12 pt-3">
 											<input type="number" name="prices[]" step="0.1" class="form-control" value="{{ $product_unit->price }}">
+										</div>
+									</div>
+									<div class="col-12 col-lg-4 p-2">
+										<div class="col-12">
+											التخفيض
+										</div>
+										<div class="col-12 pt-3">
+											<input type="number" required name="discount[]" step="1" max="100" class="form-control" value="{{ $product_unit->discount_percentage }}">
 										</div>
 									</div>
 								</div>
