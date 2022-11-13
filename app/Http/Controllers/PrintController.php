@@ -19,7 +19,7 @@ class PrintController extends Controller
     public function order(Order $order)
     {
         $qrcode_base64 = Zatca::sellerName('مؤسسة قطفة زهراء التجارية')
-        ->vatRegistrationNumber("294944634745100")
+        ->vatRegistrationNumber("302227276900003")
         ->timestamp($order->created_at->format('Y-m-d H:i'))
         ->totalWithVat($order->total)  
         ->vatTotal($order->tax)

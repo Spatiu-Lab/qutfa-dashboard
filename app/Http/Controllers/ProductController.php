@@ -60,7 +60,7 @@ class ProductController extends Controller
     {
 
         return DB::transaction(function () use($request) {
-             $product = Product::create($request->validated());
+            $product = Product::create($request->validated());
 
             for($i = 0; $i < count(config('translatable.locales')); $i++) {
                 $locale = config('translatable.locales')[$i];
@@ -87,8 +87,9 @@ class ProductController extends Controller
             if($request->has('units')){
                 foreach ($request->units as $index => $unit) {
                     $product->units()->create([
-                        'unit_id' => $unit,
-                        'price' => $request->prices[$index]
+                        'unit_id'               => $unit,
+                        'price'                 => $request->prices[$index],
+                        'discount_percentage'   => $request->discount[$index],
                     ]);
                 }
             }
@@ -160,13 +161,15 @@ class ProductController extends Controller
                     if($product_unit) {
                         $product_unit->update([
                             'unit_id' => $unit,
-                            'price' => $request->prices[$index]
+                            'price' => $request->prices[$index],
+                            'discount_percentage'   => $request->discount[$index],
                         ]);
                     }
                     else {
                         $product->units()->create([
                             'unit_id' => $unit,
-                            'price' => $request->prices[$index]
+                            'price' => $request->prices[$index],
+                            'discount_percentage'   => $request->discount[$index],
                         ]);
                     }
                 }

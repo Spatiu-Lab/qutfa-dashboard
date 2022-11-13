@@ -31,7 +31,8 @@ class StoreProductRequest extends FormRequest
             'description'   => ['required', 'string'],
             'category_id'   => ['required', 'integer', 'exists:categories,id'],
             'image'         => ['required', 'image','mimes:png,jpg'],
-            'prices'        => ['required', 'array']
+            'prices'        => ['required', 'array'],
+            'discount'      => ['sometimes', 'array'],
         ];
     }
 }
