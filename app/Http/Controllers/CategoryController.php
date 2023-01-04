@@ -58,6 +58,7 @@ class CategoryController extends Controller
         $request->validate([
             'slug'=>"required|max:190|unique:categories,slug",
             'title'=>"required",
+            'image'=>"required | image",
             'description'=>"nullable|max:10000",
             'meta_description'=>"nullable|max:10000",
         ]);
