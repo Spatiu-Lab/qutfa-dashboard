@@ -7,6 +7,8 @@ use App\Models\ProductUnit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductRescource;
+use App\Http\Resources\ProductUnitResource;
 use Illuminate\Database\Eloquent\Collection;
 
 class CategoryControlller extends Controller
@@ -24,11 +26,9 @@ class CategoryControlller extends Controller
     }
 
     public function show(Category $category) {
-        $products = ProductUnit::with(['unit', 'product'])->whereIn('product_id', $category->products->pluck('id'))->get();
-        $category_products =  collect($category)->merge($products);
-
-        return response()->json($category_products);
-        //return CategoryResource::make($category->load('products'));
+        // $products = ProductUnit::with(['unit', 'product', 'product.category'])->whereIn('product_id', $category->products->pluck('id'))->get();
+        // return ProductRescource::collection($products);
+        return CategoryResource::make($category);
     }
 
 }

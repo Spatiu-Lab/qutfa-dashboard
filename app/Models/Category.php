@@ -32,7 +32,7 @@ class Category extends Model
     }
 
     public function image(){
-       if($this->image==null)
+        if($this->image==null)
             return env('DEFAULT_IMAGE');
         else
             return env("STORAGE_URL")."/uploads/categories/".$this->image;
